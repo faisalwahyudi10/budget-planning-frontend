@@ -36,7 +36,7 @@
             <div class="text-xl font-medium text-dark">Statistik</div>
             <p class="text-grey">Data User</p>
           </div>
-          <NuxtLink :to="{ name: 'home-users-create' }" class="btn btn-primary"
+          <NuxtLink :to="{ name: 'users-create' }" class="btn btn-primary"
             >Tambah User</NuxtLink
           >
         </div>
@@ -127,8 +127,8 @@
                           <td class="px-6 py-4" v-if="user.status == 1"><button type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Aktif</button></td>
                           <td class="px-6 py-4" v-else-if="user.status == 0"><button type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-red-600 uppercase transition duration-150 ease-in-out border-2 border-red-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Nonaktif</button></td>
                           <td class="px-6 py-4">
-                            <a href="#" v-on:click="resetPassword({id:user.id})" class="px-3"><font-awesome-icon :icon="['fas', 'key']" beat-fade /></a>
-                            <a href="#" v-on:click="openUpdate({id:user.id, role:user.role, status:user.status})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" beat-fade /></a>
+                            <a href="#" v-on:click="resetPassword({id:user.id})" class="px-3"><font-awesome-icon :icon="['fas', 'key']" beat-fade title="Reset Password"/></a>
+                            <a href="#" v-on:click="openUpdate({id:user.id, role:user.role, status:user.status})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" beat-fade title="Update Data User"/></a>
                           </td>
                           <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">

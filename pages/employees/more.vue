@@ -18,7 +18,7 @@
                 <label for="" class="text-grey">Alamat</label>
                 <input type="text" class="input-field" :value="address" @input="updateAddress" />
             </div>
-            <NuxtLink :to="{name: 'home-employees-finish'}" class="w-full btn btn-primary mt-[14px]">
+            <NuxtLink :to="{name: 'employees-user'}" class="w-full btn btn-primary mt-[14px]">
                 Continue
             </NuxtLink>
         </form>

@@ -63,7 +63,15 @@ export default {
 
                 // Send Registration Data to Server
                 
-                let response = await this.$axios.post('/employee', formData, config)
+                let response = await this.$axios.post('/employee', formData, config) .then(response => {
+                        let dataForm = new FormData();
+                        dataForm.append("username", this.$store.state.employee.username);
+                        dataForm.append("password", this.$store.state.employee.password);
+                        dataForm.append("role", this.$store.state.employee.role);
+                        dataForm.append("employee_id", response.data.result.id);
+                        console.log(response)
+                        this.$axios.post('/user', dataForm)
+                    })
 
                 // Clear Registration Data
                 this.$store.commit('employee/updateName', '')
@@ -77,7 +85,7 @@ export default {
 
                 // Redirect to employee page
                 this.$router.push({
-                    name: 'home-employees',
+                    name: 'employees',
                 })
 
                 console.log(response)

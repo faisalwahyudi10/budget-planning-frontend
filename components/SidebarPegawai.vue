@@ -16,27 +16,39 @@
                 </div>
                 <div class="flex flex-col gap-4">
                     <div class="text-sm text-grey">Menu</div>
-                    <NuxtLink :to="{ name: 'index' }" class="nav-link">
+                    <NuxtLink :to="{ name: 'year-id' }" class="nav-link">
                         <img src="/assets/svgs/ic-grid.svg" alt="">
                         Dashboard
                     </NuxtLink>
-                    <NuxtLink :to="{ name: 'programs' }" class="nav-link">
+                    <NuxtLink :to="{ name: 'year-id-programs' }" class="nav-link">
                         <img src="/assets/svgs/ic-box.svg" alt="">
                         Program
                     </NuxtLink>
-                    <NuxtLink :to="{ name: 'employees' }" class="nav-link">
-                        <img src="/assets/svgs/ic-users.svg" alt="">
-                        Pegawai
+                    <NuxtLink :to="{ name: 'year-id-activities' }" class="nav-link">
+                        <img src="/assets/svgs/activity-svgrepo-com.svg" alt="">
+                        Kegiatan
                     </NuxtLink>
-                    <NuxtLink :to="{ name: 'users' }" class="nav-link">
-                        <img src="/assets/svgs/ic-settings.svg" alt="">
-                        User
+                    <NuxtLink :to="{ name: 'year-id-expenses' }" class="nav-link">
+                        <img src="/assets/svgs/basket-shopping.svg" alt="">
+                        Rincian Belanja
+                    </NuxtLink>
+                    <NuxtLink :to="{ name: 'year-id-realization' }" class="nav-link">
+                        <img src="/assets/svgs/layer-group.svg" alt="">
+                        Realisasi
+                    </NuxtLink>
+                    <NuxtLink :to="{ name: 'year-id-reports' }" class="nav-link">
+                        <img src="/assets/svgs/file-export.svg" alt="">
+                        Laporan
+                    </NuxtLink>
+                    <NuxtLink :to="{ name: 'year-id-charts' }" class="nav-link">
+                        <img src="/assets/svgs/chart.svg" alt="">
+                        Grafik
                     </NuxtLink>
                 </div>
                 <div class="flex flex-col gap-4">
                     <div class="text-sm text-grey">Setting</div>
-                    <NuxtLink :to="{ name: 'profile' }" class="nav-link">
-                        <img src="/assets/svgs/user-crown.svg" alt="">
+                    <NuxtLink :to="{ name: 'year-id-profile' }" class="nav-link">
+                        <img src="/assets/svgs/user-astrounaut.svg" alt="">
                         Profil
                     </NuxtLink>
                     <button @click="$auth.logout()" class="nav-link">

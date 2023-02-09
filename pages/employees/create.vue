@@ -30,7 +30,7 @@
                 <label for="" class="text-grey">Tanggal Lahir</label>
                 <input type="date" class="input-field" :value="birthDate" @input="updateBirthDate" />
             </div>
-            <NuxtLink :to="{name: 'home-employees-more'}" href="employee_create-2.html" class="w-full btn btn-primary mt-[14px]">
+            <NuxtLink :to="{name: 'employees-more'}" href="employee_create-2.html" class="w-full btn btn-primary mt-[14px]">
                 Continue
             </NuxtLink>
         </form>

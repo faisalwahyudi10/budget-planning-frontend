@@ -15,9 +15,9 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'format-detection', content: 'telephone=no'},
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: '/logo-bappeda.png' }],
+    link: [{ rel: 'icon', type: 'image/png', href: '/logo-bappeda.png'}],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -29,6 +29,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/fontawesome.js',
+    '~/plugins/vue2-filters',
+    '~/plugins/chart',
+    '~/plugins/hchs-vue-charts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -57,6 +60,25 @@ export default {
   auth: {
     strategies: {
       local: {
+        scheme: 'local',
+        token: {
+          property: 'result.access_token',
+          global: true,
+          required: true,
+          type: 'Bearer',
+        },
+        user: {
+          property: 'result',
+          autoFetch: true,
+        },
+        endpoints: {
+          login: { url: '/login', method: 'post' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/user/me', method: 'get' },
+        },
+      },
+      local2: {
+        scheme: 'local',
         token: {
           property: 'result.access_token',
           global: true,

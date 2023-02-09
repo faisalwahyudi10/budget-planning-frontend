@@ -16,7 +16,7 @@
 
 @layer components{
     .card{
-        @apply bg-white relative p-6 rounded-[26px] flex flex-col gap-y-4 md:max-w-[500px]
+        @apply bg-white relative p-6 rounded-[26px] flex flex-col gap-y-4 md:max-w-screen-md
     }
 
     .input-field{

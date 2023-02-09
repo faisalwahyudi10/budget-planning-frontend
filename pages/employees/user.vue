@@ -8,30 +8,24 @@
         <form class="w-full card">
             <div class="form-group">
                 <label for="" class="text-grey">Username</label>
-                <input type="text" class="input-field" v-model="users.username"/>
+                <input type="text" class="input-field" :value="username" @input="updateUsername"/>
             </div>
             <div class="form-group">
                 <label for="" class="text-grey">Password</label>
-                <input type="password" class="input-field" v-model="users.password"/>
+                <input type="password" class="input-field" :value="password" @input="updatePassword"/>
             </div>
             <div class="form-group">
                 <label for="" class="text-grey">Role</label>
-                <select name="" id="" v-model="users.role" class="appearance-none input-field form-icon-chevron_down">
+                <select name="" id="" :value="role" @change="updateRole" class="appearance-none input-field form-icon-chevron_down">
                     <option selected disabled>-- Pilih Role --</option>
                     <option value="1">Admin</option>
                     <option value="2">Pegawai</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="" class="text-grey">Pegawai</label>
-                <select name="" id="" v-model="users.employee_id" class="appearance-none input-field form-icon-chevron_down">
-                    <option selected disabled>-- Pilih Pegawai --</option>
-                    <option v-for="employee in employees.data" :value="employee.id">{{ employee.name }}</option>
-                </select>
-            </div>
-            <button type="button" @click="createUser()" id="continueBtn" class="btn btn-primary">
-                Simpan
-            </button>
+
+            <NuxtLink :to="{name: 'employees-finish'}" class="w-full btn btn-primary mt-[14px]">
+                Continue
+            </NuxtLink>
         </form>
     </section>
 </template>
@@ -40,24 +34,16 @@
 export default {
     layout: 'form',
     middleware: 'auth',
-    data() {
-      return {
-        users: {
-            username: '',
-            password: '',
-            role: '',
-            employee_id: '',
-        },
-        employees: [],
-      }
-    }, 
-    fetch() {
-      this.employees = this.$axios.get('/employee?whereNoEm=1', { 
-      }) .then(({ data }) => {
-                    this.employees = data.result
-                })
-    },
     methods: {
+        updateUsername(event) {
+            this.$store.commit('employee/updateUsername', event.target.value)
+        },
+        updatePassword(event) {
+            this.$store.commit('employee/updatePassword', event.target.value)
+        },
+        updateRole(event) {
+            this.$store.commit('employee/updateRole', event.target.value)
+        },
         async createUser() {
             try {
                 this.$axios.post('/user', this.users)
@@ -70,6 +56,17 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+        },
+    },
+    computed: {
+        username() {
+            return this.$store.state.employee.username
+        },
+        password() {
+            return this.$store.state.employee.password
+        },
+        role() {
+            return this.$store.state.employee.role
         },
     }
 }

@@ -8,6 +8,9 @@ export const state = () => ({
     email: '',
     address: '',
     status: '',
+    username: '',
+    password: '',
+    role: '',
   })
   
   export const mutations = {
@@ -37,5 +40,14 @@ export const state = () => ({
     },
     updateStatus(state, payload) {
       state.status = payload
+    },
+    updateUsername(state, payload) {
+      state.username = payload
+    },
+    updatePassword(state, payload) {
+      state.password = payload
+    },
+    updateRole(state, payload) {
+      state.role = payload
     },
   }

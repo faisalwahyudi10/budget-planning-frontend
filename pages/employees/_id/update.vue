@@ -94,7 +94,7 @@ export default {
 
                 // Redirect to employee page
                 this.$router.push({
-                    name: 'home-employees',
+                    name: 'employees',
                 })
 
                 console.log(response)

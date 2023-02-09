@@ -36,7 +36,7 @@
             <div class="text-xl font-medium text-dark">Statistik</div>
             <p class="text-grey">Data Pegawai</p>
           </div>
-          <NuxtLink :to="{ name: 'home-employees-create' }" class="btn btn-primary"
+          <NuxtLink :to="{ name: 'employees-create' }" class="btn btn-primary"
             >Tambah Pegawai</NuxtLink
           >
         </div>
@@ -108,7 +108,7 @@
             @click="toggleModal({name:employee.name, id:employee.id, nik:employee.nik, position:employee.position, gender:employee.gender, birthDate:employee.birth_date, phone:employee.phone, email:employee.email, address:employee.address, status:employee.is_verified})"
             class="absolute inset-0 focus:ring-2 ring-primary rounded-[26px]"
           ></a>
-          <img :src="'http://budget-planning-backend.test/'+ employee.photo" width="180" height="180" alt="" class="rounded-full" />
+          <img :src="'http://budget-planning-backend.test/'+ employee.photo" width="145" height="145" alt="" class="rounded-full" />
           <div class="mt-6 mb-1 font-semibold text-center text-dark">
             {{ employee.name }}
           </div>
@@ -270,7 +270,7 @@ export default {
       },
       openUpdate() {
         this.$router.push({
-          name: 'home-employees-id-update',
+          name: 'employees-id-update',
           params: {
               id: this.passedData.id,
           },
@@ -304,6 +304,7 @@ export default {
         
       }
     },
-}
+};
+
 </script>
 

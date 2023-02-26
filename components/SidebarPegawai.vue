@@ -51,6 +51,10 @@
                         <img src="/assets/svgs/user-astrounaut.svg" alt="">
                         Profil
                     </NuxtLink>
+                    <NuxtLink :to="{ name: 'year-id-detailType' }" class="nav-link">
+                        <img src="/assets/svgs/hashtags.svg" alt="">
+                        Jenis Belanja
+                    </NuxtLink>
                     <button @click="$auth.logout()" class="nav-link">
                         <img src="/assets/svgs/ic-signout.svg" alt="">
                         Logout

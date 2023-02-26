@@ -50,11 +50,6 @@
                     Realisasi Program dan Kegiatan Anggaran
                 </a>
                 </li>
-                <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
-                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-full shadow-lg" v-on:click="toggleTabs(2)" v-bind:class="{'text-gray-600 bg-white': openTab !== 2, 'text-white bg-gray-500': openTab === 2}">
-                    Realisasi Rincian Belanja
-                </a>
-                </li>
             </ul>
             <div class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-[#fafaf9] rounded shadow-lg">
                 <div class="flex-auto px-4 py-5">
@@ -178,7 +173,7 @@
                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                         <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
-                                                <th scope="col" colspan="4" class="px-6 py-3 text-center " v-if="resultQuery5">
+                                                <th scope="col" colspan="5" class="px-6 py-3 text-center " v-if="resultQuery5">
                                                     Anggaran Perencanaan Kegiatan {{ resultQuery5[0].name }}
                                                 </th>
                                                 <th scope="col" colspan="4" class="px-6 py-3 text-center " v-else>
@@ -188,6 +183,9 @@
                                         </thead>
                                         <tbody>
                                             <tr class="border-b border-slate-50 bg-slate-0">
+                                                <th scope="row" class="px-3 py-4 text-center">
+                                                    Desc
+                                                </th>
                                                 <th scope="row" class="px-3 py-4 text-center">
                                                     Triwulan 1
                                                 </th>
@@ -202,15 +200,35 @@
                                                 </th>
                                             </tr>
                                             <tr class="bg-gray-100 border-b border-gray-200">
+                                              <th scope="row" class="px-3 py-4 text-center">
+                                                    Anggaran
+                                                </th>
                                               <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery3" v-for="(tw) in resultQuery3">
                                                 {{ tw.jumlah | currency('Rp. ') }}
                                               </th>
                                             </tr>
                                             <tr class="border-b bg-slate-0 border-slate-50">
+                                              <th scope="row" class="px-3 py-4 text-center">
+                                                    Target
+                                                </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery5">
+                                                {{ resultQuery5[0].document_plan_tw1 }} {{ resultQuery5[0].target }}
+                                              </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery5">
+                                                {{ resultQuery5[0].document_plan_tw2 }} {{ resultQuery5[0].target }}
+                                              </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery5">
+                                                {{ resultQuery5[0].document_plan_tw3 }} {{ resultQuery5[0].target }}
+                                              </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery5">
+                                                {{ resultQuery5[0].document_plan_tw4 }} {{ resultQuery5[0].target }}
+                                              </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
+                                            </tr>
+                                            <tr class="bg-gray-100 border-b border-gray-200">
                                               <th scope="row" colspan="2" class="px-6 py-3 text-center">
                                                 Total
                                               </th>
-                                              <th scope="row" colspan="2" class="px-6 py-3 text-center">
+                                              <th scope="row" colspan="3" class="px-6 py-3 text-center">
                                                 {{ costTotal3 | currency('Rp. ') }}
                                               </th>
                                             </tr>
@@ -250,7 +268,7 @@
                                             </tr>
                                             <tr class="bg-gray-100 border-b border-gray-200">
                                               <th scope="row" class="px-3 py-4 text-center">
-                                                    Anggaran
+                                                    Realisasi
                                                 </th>
                                               <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery7" v-for="(twr, index) in resultQuery7">
                                                 {{ twr.jumlah | currency('Rp. ') }}
@@ -317,125 +335,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                            <div class="pt-8 pb-11">
-                              
-                                <p v-if="$fetchState.pending">Fetching data...</p>
-
-                                <table class="w-full mb-10 text-base text-left text-center text-gray-500 dark:text-gray-400">
-                                    <thead class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th colspan="6" scope="col" class="px-6 py-3">
-                                                Total Rincian Belanja
-                                            </th>
-                                        </tr>
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <th scope="col" class="px-6 py-3">
-                                              Desc
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                              Total
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Tw1
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Tw2
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Tw3
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                Tw4
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3">
-                                              Perencanaan
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                {{ costTotal3 | currency('Rp. ') }}
-                                            </th>
-                                            <th scope="col" class="px-6 py-3" v-if="resultQuery3" v-for="(tw) in resultQuery3">
-                                                {{ tw.jumlah | currency('Rp. ') }}
-                                            </th>
-                                        </tr>
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                            <th scope="col" class="px-6 py-3">
-                                                Realisasi
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                {{ costTotal7 | currency('Rp. ') }}
-                                            </th>
-                                            <th scope="col" class="px-6 py-3" v-if="resultQuery7" v-for="(tw) in resultQuery7">
-                                                {{ tw.jumlah | currency('Rp. ') }}
-                                            </th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="flex flex-col justify-between gap-6 mt-4 mb-2 sm:items-center sm:flex-row">
-                                  <div class="text-[22px] font-semibold text-dark">Data Realisasi Rincian Belanja</div>
-                                  <a href="#" v-on:click="openCreate(searchQuery)" class="btn btn-primary">Tambah Rincian Belanja</a>
-                                </div>
-
-                                <div class="relative mt-4 overflow-x-auto">
-                                    <p v-if="$fetchState.pending"><v-icon name="sync" spin></v-icon>...</p>
-                                    <table class="w-full text-base text-left text-center text-gray-500 dark:text-gray-400">
-                                        <thead class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3">
-                                                    No
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Nama
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Jenis
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Triwulan
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Jumlah
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Harga
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Total
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Status
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Aksi
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery2">
-                                                <td class="px-6 py-4">{{ index+1 }}</td>
-                                                <td class="px-6 py-4">{{ expense.name }}</td>
-                                                <td class="px-6 py-4">{{ expense.item_type }}</td>
-                                                <td class="px-6 py-4">Triwulan {{ expense.tw }}</td>
-                                                <td class="px-6 py-4">{{ expense.amount }} {{ expense.unit_type }}</td>
-                                                <td class="px-6 py-4">{{ expense.cost | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4">{{ costTotal2[index] | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4" v-if="expense.realized == 1"> Perencanaan </td><td class="px-6 py-4" v-else-if="expense.realized == 2"> Terealisasi </td>
-                                                
-                                                <td class="px-6 py-4">
-                                                    <a href="#" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, item_type:expense.item_type, unit_type:expense.unit_type, cost:expense.cost, realized:expense.realized, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
-                                                    <a href="#" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 </div>
@@ -719,7 +619,6 @@ export default {
         this.totaltw = this.$axios.get('/expense', { 
             params: {
                 with_sum: 1,
-                realized: 1,
                 limit: 100,
             }
         }) .then(({ data }) => {
@@ -729,8 +628,8 @@ export default {
       getTotalRTw(){
         this.totalrtw = this.$axios.get('/expense', { 
             params: {
-                with_sum: 1,
-                realized: 2,
+                with_sum_real: 1,
+                not_null: 1,
                 limit: 100,
             }
         }) .then(({ data }) => {
@@ -763,10 +662,10 @@ export default {
       realizationBudget() {
         try {
             this.$axios.post('/activity/realization/'+ this.searchQuery, {
-              activity_realized_tw1: this.resultQuery6[0] ? this.resultQuery6[0].jumlah : 0,
-              activity_realized_tw2: this.resultQuery6[1] ? this.resultQuery6[1].jumlah : 0,
-              activity_realized_tw3: this.resultQuery6[2] ? this.resultQuery6[2].jumlah : 0,
-              activity_realized_tw4: this.resultQuery6[3] ? this.resultQuery6[3].jumlah : 0,
+              activity_realized_tw1: this.resultQuery7[0] ? this.resultQuery7[0].jumlah : 0,
+              activity_realized_tw2: this.resultQuery7[1] ? this.resultQuery7[1].jumlah : 0,
+              activity_realized_tw3: this.resultQuery7[2] ? this.resultQuery7[2].jumlah : 0,
+              activity_realized_tw4: this.resultQuery7[3] ? this.resultQuery7[3].jumlah : 0,
               
               document_realized_tw1: this.resultQuery5[0].document_realized_tw1 ? this.resultQuery5[0].document_realized_tw1 : null,
               document_realized_tw2: this.resultQuery5[0].document_realized_tw2 ? this.resultQuery5[0].document_realized_tw2 : null,

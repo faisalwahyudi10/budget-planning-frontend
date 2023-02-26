@@ -141,51 +141,60 @@
 
                                     <div class="text-[22px] font-semibold text-dark">Data Rincian Belanja</div>
 
-                                    <table class="w-full mt-5 text-base text-left text-center text-gray-500 dark:text-gray-400">
-                                        <thead class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                    <table class="w-full mt-5 text-sm text-left text-center text-gray-500 dark:text-gray-400">
+                                        <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     No
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Nama
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
+                                                    Belanja
+                                                </th>
+                                                <th scope="col" class="w-2/12 px-4 py-3">
+                                                    Detail Belanja
+                                                </th>
+                                                <th scope="col" class="px-4 py-3">
                                                     Jenis
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Triwulan
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Jumlah
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Harga
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Total
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Status
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-4 py-3">
                                                     Aksi
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery">
-                                                <td class="px-6 py-4">{{ index+1 }}</td>
-                                                <td class="px-6 py-4">{{ expense.name }}</td>
-                                                <td class="px-6 py-4">{{ expense.item_type }}</td>
-                                                <td class="px-6 py-4">Triwulan {{ expense.tw }}</td>
-                                                <td class="px-6 py-4">{{ expense.amount }} {{ expense.unit_type }}</td>
-                                                <td class="px-6 py-4">{{ expense.cost | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4">{{ costTotal[index] | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4" v-if="expense.realized == 1"> Perencanaan </td><td class="px-6 py-4" v-else-if="expense.realized == 2"> Terealisasi </td>
+                                                <td class="px-4 py-4">{{ index+1 }}</td>
+                                                <td class="px-4 py-4">{{ expense.name }}</td>
+                                                <td class="px-4 py-4">{{ expense.expense_type }}</td>
+                                                <td class="px-4 py-4">{{ expense.detail_type.name }}</td>
+                                                <td class="px-4 py-4">{{ expense.item_type }}</td>
+                                                <td class="px-4 py-4">Triwulan {{ expense.tw }}</td>
+                                                <td class="px-4 py-4">{{ expense.amount }} {{ expense.unit_type }}</td>
+                                                <td class="px-4 py-4">{{ expense.cost | currency('Rp. ') }}</td>
+                                                <td class="px-4 py-4">{{ costTotal[index] | currency('Rp. ') }}</td>
+                                                <td class="px-4 py-4" v-if="expense.realized == null || expense.amount_real == null"><button type="button" class="inline-block px-4 py-2 text-xs font-medium leading-tight text-blue-600 uppercase transition duration-150 ease-in-out border-2 border-blue-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Perencanaan</button></td><td class="px-4 py-4" v-else><button type="button" class="inline-block px-4 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Terealisasi</button></td>
                                                 
-                                                <td class="px-6 py-4">
-                                                    <a href="#" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, item_type:expense.item_type, unit_type:expense.unit_type, cost:expense.cost, realized:expense.realized, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
+                                                <td class="px-4 py-4">
+                                                    <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount_real, realized:expense.realized})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a>
+                                                    <a href="#" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, expense_type:expense.expense_type, item_type:expense.item_type, detailType_id:expense.detailType_id, unit_type:expense.unit_type, cost:expense.cost, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
                                                     <a href="#" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
                                                 </td>
                                             </tr>
@@ -199,51 +208,125 @@
                                 <p v-if="$fetchState.pending">Fetching data...</p>
                                 <div class="relative overflow-x-auto">
                                     <p v-if="$fetchState.pending"><v-icon name="sync" spin></v-icon>...</p>
-                                    <table class="w-full text-base text-left text-center text-gray-500 dark:text-gray-400">
+
+                                    <table class="w-full mb-10 text-base text-left text-center text-gray-500 dark:text-gray-400">
                                         <thead class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
+                                                <th colspan="6" scope="col" class="px-6 py-3">
+                                                    Total Rincian Belanja
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                                 <th scope="col" class="px-6 py-3">
+                                                  Desc
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                  Total
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Tw1
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Tw2
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Tw3
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Tw4
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                  Anggaran
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    {{ costTotal3 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
+                                                    {{ tw.activity_budget_tw1 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
+                                                    {{ tw.activity_budget_tw2 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
+                                                    {{ tw.activity_budget_tw3 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
+                                                    {{ tw.activity_budget_tw4 | currency('Rp. ') }}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Realisasi
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    {{ costTotal5 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery5">
+                                                    {{ tw.jumlah | currency('Rp. ') }}
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="text-[22px] font-semibold text-dark">Data Realisasi Rincian Belanja</div>
+
+                                    <table class="w-full mt-5 text-sm text-left text-center text-gray-500 dark:text-gray-400">
+                                        <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                            <tr>
+                                                <th scope="col" class="px-5 py-3">
                                                     No
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Nama
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
+                                                    Belanja
+                                                </th>
+                                                <th scope="col" class="w-2/12 px-5 py-3">
+                                                    Detail Belanja
+                                                </th>
+                                                <th scope="col" class="px-5 py-3">
                                                     Jenis
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Triwulan
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Jumlah
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Harga
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Total
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Status
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="px-5 py-3">
                                                     Aksi
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery2">
-                                                <td class="px-6 py-4">{{ index+1 }}</td>
-                                                <td class="px-6 py-4">{{ expense.name }}</td>
-                                                <td class="px-6 py-4">{{ expense.item_type }}</td>
-                                                <td class="px-6 py-4">Triwulan {{ expense.tw }}</td>
-                                                <td class="px-6 py-4">{{ expense.amount }} {{ expense.unit_type }}</td>
-                                                <td class="px-6 py-4">{{ expense.cost | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4">{{ costTotal2[index] | currency('Rp. ') }}</td>
-                                                <td class="px-6 py-4" v-if="expense.realized == 1"> Perencanaan </td><td class="px-6 py-4" v-else-if="expense.realized == 2"> Terealisasi </td>
+                                                <td class="px-5 py-4">{{ index+1 }}</td>
+                                                <td class="px-5 py-4">{{ expense.name }}</td>
+                                                <td class="px-5 py-4">{{ expense.expense_type }}</td>
+                                                <td class="px-5 py-4">{{ expense.detail_type.name }}</td>
+                                                <td class="px-5 py-4">{{ expense.item_type }}</td>
+                                                <td class="px-5 py-4">Triwulan {{ expense.tw }}</td>
+                                                <td class="px-5 py-4">{{ expense.amount_real }} {{ expense.unit_type }}</td>
+                                                <td class="px-5 py-4">{{ expense.realized | currency('Rp. ') }}</td>
+                                                <td class="px-5 py-4">{{ costTotal2[index] | currency('Rp. ') }}</td>
+                                                <td class="px-5 py-4" v-if="expense.realized == null || expense.amount_real == null"><button type="button" class="inline-block px-5 py-2 text-xs font-medium leading-tight text-blue-600 uppercase transition duration-150 ease-in-out border-2 border-blue-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Perencanaan</button></td><td class="px-5 py-4" v-else><button type="button" class="inline-block px-5 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Terealisasi</button></td>
                                                 
-                                                <td class="px-6 py-4">
-                                                    <a href="#" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, item_type:expense.item_type, unit_type:expense.unit_type, cost:expense.cost, realized:expense.realized, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
+                                                <td class="px-5 py-4">
+                                                    <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount_real, realized:expense.realized})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a>
                                                     <a href="#" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
                                                 </td>
                                             </tr>
@@ -260,15 +343,62 @@
       </div>
 
       
-      
-                          <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
+                          <div v-if="getModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
                               <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
-                                    Tambah Realisasi Rincian Belanja
+                                    Realisasi Rincian Belanja
+                                  </h5>
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openRealization()">
+                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                      ×
+                                    </span>
+                                  </button>
+                                </div>
+                                <!--body-->
+                                <div class="relative flex-auto p-6">
+                                  <table class="shadow-lg shadow-blue-200/50 ... w-full rounded-lg border-separate border-spacing-2 border border-slate-400 ...">
+                                    <tr>
+                                      <th class="p-3 text-left">Jumlah</th>
+                                      <td class="p-3">
+                                        <input type="number" v-model="reData.amount_real" id="first_name" class=" w-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Jumlah" required>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Harga</th>
+                                      <td class="p-3">
+                                        <input type="number" v-model="reData.realized" id="first_name" class=" w-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Harga" required>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </div>
+                                <!--footer-->
+                                <div class="flex items-center justify-end p-6 border-t border-solid rounded-b border-slate-200">
+                                  <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" v-on:click="openRealization()">
+                                    Close
+                                  </button>
+                                  <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" @click="realizationData()">
+                                    Realisasi
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div v-if="getModal" class="fixed inset-0 z-40 bg-black opacity-25"></div>
+
+
+      
+                          <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
+                            <div class="relative w-auto max-w-6xl mx-auto my-6">
+                              <!--content-->
+                              <div class="relative flex flex-col w-5/6 bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                                <!--header-->
+                                <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
+                                  <h5 class="text-xl font-semibold text-blue-500">
+                                    Tambah Rencana Rincian Belanja
                                   </h5>
                                   <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openCreate()">
                                     <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
@@ -295,6 +425,25 @@
                                       <th class="p-3 text-left">Satuan</th>
                                       <td class="p-3">
                                         <input type="text" v-model="getData.unit_type" id="first_name" class=" w-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Satuan" required>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Belanja</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="getData.expense_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled value="">-- Pilih Belanja --</option>
+                                          <option value="Modal">Modal</option>
+                                          <option value="Operasi">Operasi</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Detail</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="getData.detailType_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled value="">-- Pilih Detail --</option>
+                                          <option v-for="detail in detailType" :value="detail.id">{{ detail.name }}</option>
+                                        </select>
                                       </td>
                                     </tr>
                                     <tr>
@@ -346,7 +495,7 @@
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-5/6 bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
@@ -377,6 +526,25 @@
                                       <th class="p-3 text-left">Satuan</th>
                                       <td class="p-3">
                                         <input type="text" v-model="loadData.unit_type" id="first_name" class=" w-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Satuan" required>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Belanja</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="loadData.expense_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled value="">-- Pilih Belanja --</option>
+                                          <option value="Modal">Modal</option>
+                                          <option value="Operasi">Operasi</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Detail</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="loadData.detailType_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled>-- Pilih Detail --</option>
+                                          <option v-for="detail in detailType" :value="detail.id">{{ detail.name }}</option>
+                                        </select>
                                       </td>
                                     </tr>
                                     <tr>
@@ -434,18 +602,21 @@ export default {
     data() {
       return {
           activities: [],
+          detailType: [],
           expenses: [],
           expenses1: [],
           totaltw:[],
+          totalreal:[],
           searchQuery: null,
           loadData: {
             id: null,
             name: null,
             amount: null,
+            expense_type: null,
             item_type: null,
+            detailType_id: null,
             unit_type: null,
             cost: null,
-            realized: null,
             tw: null,
             activity_id: null,
           },
@@ -453,14 +624,22 @@ export default {
           getData: {
             name: '',
             amount: '',
+            expense_type: '',
             item_type: '',
+            detailType_id: '',
             unit_type: '',
             cost: '',
-            realized: 1,
             tw: '',
             activity_id: '',
+            program_id: this.$route.params.id,
           },
           showModal: false,
+          reData: {
+            id: '',
+            amount_real: '',
+            realized: '',
+          },
+          getModal: false,
           openTab: 1,
       }
     },
@@ -469,6 +648,8 @@ export default {
       this.getExpenses()
       this.getExpenses1()
       this.getTotalTw()
+      this.getTotalRealTw()
+      this.getDetailType()
     },
     methods: {
       toggleTabs: function(tabNumber){
@@ -482,21 +663,43 @@ export default {
         this.showModal = !this.showModal;
         this.getData.activity_id = data
       },
+      openRealization: function(data){
+        this.getModal = !this.getModal;
+        this.reData = data
+      },
       getTotalTw(){
         this.totaltw = this.$axios.get('/expense', { 
             params: {
                 with_sum: 1,
-                realized: 1,
                 limit: 100,
             }
         }) .then(({ data }) => {
                     this.totaltw = data.result.data
               })
       },
+      getTotalRealTw(){
+        this.totalreal = this.$axios.get('/expense', { 
+            params: {
+                not_null: 1,
+                with_sum_real: 1,
+                limit: 100,
+            }
+        }) .then(({ data }) => {
+                    this.totalreal = data.result.data
+              })
+      },
+      getDetailType() {
+        this.detailType = this.$axios.get('/detailType', { 
+            params: {
+                limit: 400,
+            }
+        }) .then(({ data }) => {
+                    this.detailType = data.result.data
+              })
+      },
       getExpenses() {
         this.expenses = this.$axios.get('/expense', { 
             params: {
-                realized: 1,
                 limit: 100,
                 order_tw: 1,
             }
@@ -507,7 +710,8 @@ export default {
       getExpenses1() {
         this.expenses1 = this.$axios.get('/expense', { 
             params: {
-                realized: 2,
+                not_null: 1,
+                order_tw: 1,
                 limit: 100,
             }
         }) .then(({ data }) => {
@@ -528,9 +732,23 @@ export default {
         try {
             this.$axios.post('/expense/update/'+ this.loadData.id, this.loadData)
                 .then(response => 
-                    this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw()
+                    this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw() + this.getTotalRealTw()
                 )
               this.viewModal = false
+        } catch (error) {
+            console.log(error)
+        }
+      },
+      realizationData() {
+        try {
+            this.$axios.post('/expense/realization/'+ this.reData.id, this.reData)
+                .then(response => 
+                    this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw() + this.getTotalRealTw()
+                )
+              this.getModal = false
+              this.reData.id = ''
+              this.reData.amount_real = ''
+              this.reData.realized = ''
         } catch (error) {
             console.log(error)
         }
@@ -541,10 +759,11 @@ export default {
         } else {
           try {
             this.$axios.post('/expense', this.getData)
-                .then((response) => this.getExpenses() + this.getExpenses() + this.getActivities() + this.getTotalTw());
+                .then((response) => this.getExpenses() + this.getExpenses() + this.getActivities() + this.getTotalTw() + this.getTotalRealTw());
             this.showModal = false
             this.getData.name = ''
             this.getData.amount = ''
+            this.getData.expense_type = ''
             this.getData.unit_type = ''
             this.getData.item_type = ''
             this.getData.cost = ''
@@ -558,7 +777,7 @@ export default {
         const confirmBox = confirm("Anda Yakin Ingin Menghapus Data ini?")
         if (confirmBox) {
           this.$axios.delete('/expense/' + item.id). then( response => 
-            this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw()
+            this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw() + this.getTotalRealTw()
           )
         }
       },
@@ -623,6 +842,20 @@ export default {
                 return this.programs;
             }
         },
+        resultQuery5(){
+            if(this.searchQuery){
+              let ss = [];
+            Object.entries(this.totalreal).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            return ss.filter((item)=>{
+                let columns = item.activity_id;
+                return columns == this.searchQuery
+            })
+            }else if (this.searchQuery == null || this.searchQuery == ''){
+                return this.programs;
+            }
+        },
         costTotal() {
             return this.resultQuery.map((item) => {
                 return Number(item.amount * item.cost);
@@ -630,7 +863,7 @@ export default {
         },
         costTotal2() {
             return this.resultQuery2.map((item) => {
-                return Number(item.amount * item.cost);
+                return Number(item.amount_real * item.realized);
             });
         },
         costTotal3() {
@@ -643,6 +876,13 @@ export default {
         costTotal4() {
           if (this.resultQuery3) {
             return this.resultQuery3.reduce(function(total, item){ 
+            return total + parseInt(item.jumlah) 
+            }, 0);
+          }
+        },
+        costTotal5() {
+          if (this.resultQuery5) {
+            return this.resultQuery5.reduce(function(total, item){ 
             return total + parseInt(item.jumlah) 
             }, 0);
           }

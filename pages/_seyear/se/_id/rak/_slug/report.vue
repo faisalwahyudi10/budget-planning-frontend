@@ -1,8 +1,8 @@
 <template>
     <div class="px-8" >
         <div class="mb-4">
-            <div class="p-2 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200">RENCANA ANGGARAN KAS <br> SATUAN ANGGARAN KERJA PERANGKAT DAERAH</div>
-            <div class="p-2 -mx-3 text-lg font-semibold tracking-wide text-center text-gray-700 border-4 border-gray-200">Pemerintah Kab. Tanah Laut Tahun Anggaran {{ program.date_program }}</div>
+            <div class="p-2 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700">RENCANA ANGGARAN KAS <br> SATUAN ANGGARAN KERJA PERANGKAT DAERAH</div>
+            <div class="p-2 -mx-3 text-lg font-semibold tracking-wide text-center text-gray-700 border-4 border-gray-200 dark:border-slate-700">Pemerintah Kab. Tanah Laut Tahun Anggaran {{ program.date_program }}</div>
         </div>
         <div class="mb-2">
             <table>
@@ -90,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(cashBudget, index ) in cashBudgets">
+                    <tr class="bg-white dark:bg-slate-800 border-b dark:bg-gray-800 dark:border-gray-700" v-for="(cashBudget, index ) in cashBudgets">
                         <td class="px-5 py-4">{{ index+1 }}</td>
                         <td class="px-5 py-4">{{ cashBudget.detail_type.name }}</td>
                         <td class="px-5 py-4">{{ cashBudget.budget | currency('Rp. ') }}</td>

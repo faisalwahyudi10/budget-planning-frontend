@@ -11,7 +11,7 @@
         <div class="flex items-center justify-between gap-4">
           <a href="#" id="toggleOpenSidebar" class="lg:hidden">
             <svg
-              class="w-6 h-6 text-dark"
+              class="w-6 h-6 text-dark dark:text-gray-100"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -25,7 +25,7 @@
               ></path>
             </svg>
           </a>
-          <div class="text-[32px] font-semibold text-dark">Dashboard Seketaris</div>
+          <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Dashboard Seketaris</div>
           
         </div>
 
@@ -36,12 +36,12 @@
       </section>
 
       <section class="pt-[20px]">
-        <div class="text-[22px] mb-[30px] font-semibold text-dark">Program {{ programs.name }}</div>
+        <div class="text-[22px] mb-[30px] font-semibold text-dark dark:text-gray-100">Program {{ programs.name }}</div>
         <!-- Section Header -->
         <div class="mb-[30px]">
           <div class="flex items-center justify-between gap-6">
             <div>
-              <div class="text-xl font-medium text-dark">Statistik</div>
+              <div class="text-xl font-medium text-dark dark:text-gray-100">Statistik</div>
               
             </div>
           </div>
@@ -52,7 +52,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Anggaran Program</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]">{{ programs.budget | currency('Rp. ') }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ programs.budget | currency('Rp. ') }}</div>
               </div>
               <NuxtLink :to="{ name: 'home-employees-create' }"
                 ><img src="/assets/svgs/ric-plus.svg" alt=""
@@ -63,8 +63,8 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Realisasi Anggaran Program</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]" v-if="programs.realized == '' || programs.realized == null || programs.realized == 0">Belum Diinput</div>
-                <div class="text-[32px] font-bold text-dark mt-[6px]" v-else>{{ programs.realized | currency('Rp. ') }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]" v-if="programs.realized == '' || programs.realized == null || programs.realized == 0">Belum Diinput</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]" v-else>{{ programs.realized | currency('Rp. ') }}</div>
               </div>
               <a href="#">
                 <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -75,7 +75,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Jumlah Kegiatan</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]">{{ activities.total }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ activities.total }}</div>
               </div>
               <a href="#">
                 <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -93,7 +93,7 @@
             <div class="mb-[30px]">
               <div class="flex items-center justify-between gap-6">
                 <div>
-                  <div class="text-xl font-medium text-dark">Grafik Bar</div>
+                  <div class="text-xl font-medium text-dark dark:text-gray-100">Grafik Bar</div>
                   <p class="text-grey">Realisasi Anggaran Pertahun</p>
                 </div>
               </div>
@@ -111,7 +111,7 @@
             <div class="mb-[30px]">
               <div class="flex items-center justify-between gap-6">
                 <div>
-                  <div class="text-xl font-medium text-dark">Grafik Pie</div>
+                  <div class="text-xl font-medium text-dark dark:text-gray-100">Grafik Pie</div>
                   <p class="text-grey">Anggaran Kegiatan Program</p>
                 </div>
               </div>

@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between gap-4">
         <a href="#" id="toggleOpenSidebar" class="lg:hidden">
           <svg
-            class="w-6 h-6 text-dark"
+            class="w-6 h-6 text-dark dark:text-gray-100"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -21,14 +21,14 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Profil Saya</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Profil Saya</div>
       </div>
       
     </section>
 
     <section class="pt-[50px]">
-        <div class="mx-auto mt-20 bg-white shadow-xl card w-[40rem] hover:shadow">
-            <img class="w-40 mx-auto -mt-20 border-8 border-white rounded-full" :src="'http://budget-planning-backend.test/'+ employees.photo" alt="">      
+        <div class="mx-auto mt-20 bg-white dark:bg-slate-800 shadow-xl card w-[40rem] hover:shadow">
+            <img class="w-40 mx-auto -mt-20 border-8 border-white rounded-full" :src="'http://localhost/'+ employees.photo" alt="">      
             <div class="text-base font-medium text-center">
                 <button v-on:click="openImage({id:employees.id})" type="button" class="inline-block w-10 h-10 leading-normal text-center text-white uppercase transition duration-150 ease-in-out rounded-full shadow-md bg-sky-300 hover:bg-sky-400 hover:shadow-lg focus:bg-sky-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-500 active:shadow-lg">
                     <font-awesome-icon :icon="['fas', 'camera-retro']" title="Edit Foto" />
@@ -43,7 +43,7 @@
             <hr class="mt-8">
             <div class="flex p-4">
             <div class="w-1/2 text-center">
-                <button v-on:click="resetPassword({id:profile.id})" type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-gray-800 uppercase transition duration-150 ease-in-out border-2 border-gray-800 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Reset Password</button>
+                <button v-on:click="resetPassword({id:profile.id})" type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-gray-800 dark:text-gray-200 uppercase transition duration-150 ease-in-out border-2 border-gray-800 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Reset Password</button>
             </div>
             <div class="w-0 border border-gray-300">
                 
@@ -57,14 +57,14 @@
         <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
             <div class="relative w-auto max-w-6xl mx-auto my-6">
               <!--content-->
-              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                   <h5 class="text-xl font-semibold text-blue-500">
                     Reset Password
                   </h5>
-                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="resetPassword()">
-                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="resetPassword()">
+                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                       ×
                     </span>
                   </button>
@@ -103,14 +103,14 @@
         <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
               <div class="relative w-auto max-w-6xl mx-auto my-6">
                 <!--content-->
-                <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                   <!--header-->
                   <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                     <h5 class="text-xl font-semibold text-blue-500">
                       Update Profil
                     </h5>
-                    <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
-                      <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                    <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
+                      <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                         ×
                       </span>
                     </button>
@@ -195,14 +195,14 @@
             <div v-if="getModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
             <div class="relative w-auto max-w-6xl mx-auto my-6">
               <!--content-->
-              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                   <h5 class="text-xl font-semibold text-blue-500">
                     Update Photo
                   </h5>
-                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openImage()">
-                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openImage()">
+                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                       ×
                     </span>
                   </button>

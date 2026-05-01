@@ -1,6 +1,6 @@
 <template>
     <section class="py-[70px] flex flex-col items-center justify-center px-4">
-        <div class="text-[32px] font-semibold text-dark">Tambah Data User</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Tambah Data User</div>
         <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
             Tambahkan User <br />
            Semakin Banyak Tim Semakin Cepat Pekerjaan

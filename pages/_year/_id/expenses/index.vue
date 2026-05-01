@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between gap-4">
         <a href="#" id="toggleOpenSidebar" class="lg:hidden">
           <svg
-            class="w-6 h-6 text-dark"
+            class="w-6 h-6 text-dark dark:text-gray-100"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Detail Rincian Belanja</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Detail Rincian Belanja</div>
       </div>
     </section>
 
@@ -34,7 +34,7 @@
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
               </div>
-              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white dark:bg-slate-800 border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected disabled value="">-- Pilih Kegiatan --</option>
                 <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
               </select>
@@ -44,7 +44,7 @@
           class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
         >
           <div>
-            <div class="text-xl font-medium text-dark">Rincian Belanja</div>
+            <div class="text-xl font-medium text-dark dark:text-gray-100">Rincian Belanja</div>
             <p class="text-grey">Data Detail Rincian Belanja</p>
           </div>
           <a href="#" v-on:click.prevent="openCreate(searchQuery)" class="btn btn-primary"
@@ -57,7 +57,7 @@
         <div class="w-full">
             <ul class="flex flex-row flex-wrap pt-3 pb-4 mb-0 list-none">
                 <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
-                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-lg shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-dark bg-secondary': openTab !== 1, 'text-dark bg-secondary': openTab === 1}">
+                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-lg shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-dark dark:text-gray-100 bg-secondary dark:bg-slate-900': openTab !== 1, 'text-dark dark:text-gray-100 bg-secondary dark:bg-slate-900': openTab === 1}">
                     Perencanaan Rincian Belanja
                 </a>
                 </li>
@@ -79,7 +79,7 @@
                                                     Total Rincian Belanja
                                                 </th>
                                             </tr>
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <tr class="bg-white dark:bg-slate-800 border-b dark:bg-gray-800 dark:border-gray-700">
                                                 <th scope="col" class="px-6 py-3">
                                                   Desc
                                                 </th>
@@ -144,7 +144,7 @@
                                         </tbody>
                                     </table>
 
-                                    <div class="text-[22px] font-semibold text-dark">Data Rincian Belanja</div>
+                                    <div class="text-[22px] font-semibold text-dark dark:text-gray-100">Data Rincian Belanja</div>
 
                                     <table class="w-full mt-5 text-sm text-left text-center text-gray-500 dark:text-gray-400">
                                         <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -185,7 +185,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery">
+                                            <tr class="bg-white dark:bg-slate-800 border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery">
                                                 <td class="px-4 py-4">{{ index+1 }}</td>
                                                 <td class="px-4 py-4">{{ expense.name }}</td>
                                                 <td class="px-4 py-4">{{ expense.expense_type }}</td>
@@ -220,14 +220,14 @@
                           <div v-if="getModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Realisasi Rincian Belanja
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openRealization()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openRealization()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>
@@ -268,14 +268,14 @@
                           <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-5/6 bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-5/6 bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Tambah Rencana Rincian Belanja
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openCreate()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openCreate()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>
@@ -389,14 +389,14 @@
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-5/6 bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-5/6 bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Update Rincian Belanja
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="pt-[20px] items-center justify-center px-10 mx-20">
-            <div class="text-[22px] mb-[15px] font-semibold text-center text-dark">Tahun Anggaran {{ selectedYear }}</div>
+            <div class="text-[22px] mb-[15px] font-semibold text-center text-dark dark:text-gray-100">Tahun Anggaran {{ selectedYear }}</div>
             <!-- Section Header -->
             <div class="mb-5">
             <div class="flex items-center justify-between gap-6">
@@ -13,7 +13,7 @@
                 <div class="flex items-center justify-between">
                 <div>
                     <p class="text-grey">Anggaran Tahun {{ selectedYear }}</p>
-                    <div class="text-[32px] font-bold text-dark mt-[6px]">{{ stats[0] ? resultYear[0].budget : 0 | currency('Rp. ') }}</div>
+                    <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ stats[0] ? resultYear[0].budget : 0 | currency('Rp. ') }}</div>
                 </div>
                 <NuxtLink :to="{ name: 'home-employees-create' }"
                     ><img src="/assets/svgs/ric-plus.svg" alt=""
@@ -24,7 +24,7 @@
                 <div class="flex items-center justify-between">
                 <div>
                     <p class="text-grey">Realisasi Anggaran Tahun {{ selectedYear }}</p>
-                    <div class="text-[32px] font-bold text-dark mt-[6px]">{{ stats[0] ? resultYear[0].realized : 0 | currency('Rp. ') }}</div>
+                    <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ stats[0] ? resultYear[0].realized : 0 | currency('Rp. ') }}</div>
                 </div>
                 <a href="#">
                     <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -35,7 +35,7 @@
                 <div class="flex items-center justify-between">
                 <div>
                     <p class="text-grey">Jumlah Program Tahun {{ selectedYear }}</p>
-                    <div class="text-[32px] font-bold text-dark mt-[6px]">{{ stats[0] ? resultYear[0].jumlah : '' }}</div>
+                    <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ stats[0] ? resultYear[0].jumlah : '' }}</div>
                 </div>
                 <a href="#">
                     <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -45,7 +45,7 @@
             </div>
         </section>
         <section class="py-[100px] flex flex-col items-center justify-center px-4">
-            <div class="text-[32px] font-semibold text-dark mb-4">Pilih Program</div>
+            <div class="text-[32px] font-semibold text-dark dark:text-gray-100 mb-4">Pilih Program</div>
             <div class="w-[30%] card">
                 <div class="form-group">
                     <label for="" class="text-grey">Tahun</label> 

@@ -1,7 +1,7 @@
 <template>
     <section class="py-[70px] flex flex-col items-center justify-center px-4">
-        <div class="text-[32px] font-semibold text-dark">Tambah Detail Belanja</div>
-        <div class="text-[22px] font-semibold text-dark">Kegiatan {{ activities.name }}</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Tambah Detail Belanja</div>
+        <div class="text-[22px] font-semibold text-dark dark:text-gray-100">Kegiatan {{ activities.name }}</div>
         <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
             Tambahkan Detail Belanja <br />
            Dengan adanya program, Tanah Laut semakin maju

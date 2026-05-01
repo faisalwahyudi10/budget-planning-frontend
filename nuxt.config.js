@@ -15,9 +15,9 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no'},
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: '/logo-bappeda.png'}],
+    link: [{ rel: 'icon', type: 'image/png', href: '/logo-bappeda.png' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -42,7 +42,12 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxt/postcss8',
     '@nuxtjs/dotenv',
+    '@nuxtjs/color-mode',
   ],
+
+  colorMode: {
+    classSuffix: '',
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -54,7 +59,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://budget-planning-backend.test/api/',
+    baseURL: process.env.API_URL || 'http://127.0.0.1:8000/api/',
   },
 
   auth: {

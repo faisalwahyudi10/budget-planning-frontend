@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between gap-4">
         <a href="#" id="toggleOpenSidebar" class="lg:hidden">
           <svg
-            class="w-6 h-6 text-dark"
+            class="w-6 h-6 text-dark dark:text-gray-100"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">User</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">User</div>
       </div>
       
     </section>
@@ -33,7 +33,7 @@
           class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
         >
           <div>
-            <div class="text-xl font-medium text-dark">Statistik</div>
+            <div class="text-xl font-medium text-dark dark:text-gray-100">Statistik</div>
             <p class="text-grey">Data User</p>
           </div>
           <NuxtLink :to="{ name: 'users-create' }" class="btn btn-primary"
@@ -47,7 +47,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-grey">Total User</p>
-              <div class="text-[32px] font-bold text-dark mt-[6px]">
+              <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">
                 {{ users.total }}
               </div>
             </div>
@@ -57,7 +57,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-grey">User Aktif</p>
-              <div class="text-[32px] font-bold text-dark mt-[6px]">
+              <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">
                 {{ verified.total }}
               </div>
             </div>
@@ -67,7 +67,7 @@
           <div class="flex items-center justify-between">
             <div>
               <p class="text-grey">User Nonaktif</p>
-              <div class="text-[32px] font-bold text-dark mt-[6px]">
+              <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">
                 {{ notverified.total }}
               </div>
             </div>
@@ -81,7 +81,7 @@
       <div class="mb-[30px]">
         <div class="flex items-center justify-between gap-6">
           <div>
-            <div class="text-xl font-medium text-dark">User</div>
+            <div class="text-xl font-medium text-dark dark:text-gray-100">User</div>
             <p class="text-grey">Data User</p>
           </div>
         </div>
@@ -118,7 +118,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(user, n ) in users.data">
+                      <tr class="bg-white dark:bg-slate-800 border-b dark:bg-gray-800 dark:border-gray-700" v-for="(user, n ) in users.data">
                           <td class="px-6 py-4">{{ n+1 }}</td>
                           <td class="px-6 py-4">{{ user.employee.name }}</td>
                           <td class="px-6 py-4">{{ user.employee.nik }}</td>
@@ -133,14 +133,14 @@
                           <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Reset Password
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="resetPassword()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="resetPassword()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>
@@ -176,14 +176,14 @@
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Update User
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>

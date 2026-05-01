@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between gap-4">
         <a href="#" id="toggleOpenSidebar" class="lg:hidden">
           <svg
-            class="w-6 h-6 text-dark"
+            class="w-6 h-6 text-dark dark:text-gray-100"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Program Rencana Anggaran</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Program Rencana Anggaran</div>
       </div>
     </section>
 
@@ -34,7 +34,7 @@
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
               </div>
-              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white dark:bg-slate-800 border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected value="">Cari Berdasarkan Tahun</option>
                 <option v-for="year in years" :value="year">{{ year }}</option>
               </select>
@@ -44,7 +44,7 @@
           class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
         >
           <div>
-            <div class="text-xl font-medium text-dark">Program</div>
+            <div class="text-xl font-medium text-dark dark:text-gray-100">Program</div>
             <p class="text-grey">Rencana dan Realisasi</p>
           </div>
           <!-- <NuxtLink :to="{ name: 'year-id-programs-create' }" class="btn btn-primary"
@@ -84,7 +84,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(program, n ) in resultQuery">
+                      <tr class="bg-white dark:bg-slate-800 border-b dark:bg-gray-800 dark:border-gray-700" v-for="(program, n ) in resultQuery">
                           <td class="px-6 py-4">{{ n+1 }}</td>
                           <td class="px-6 py-4">{{ program.name }}</td>
                           <td class="px-6 py-4">{{ program.date_program }}</td>
@@ -107,7 +107,7 @@ export default {
     data() {
       return {
           users: [],
-          programs: {},
+          programs: [],
           searchQuery: '',
           loadData: {
             id: null,
@@ -125,7 +125,7 @@ export default {
     }, 
     methods: {
       getProgram() {
-        this.programs = this.$axios.get('/program', {
+        this.$axios.get('/program', {
             params: {
                 limit: 100,
                 order_year: 1,

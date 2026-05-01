@@ -1,8 +1,8 @@
 <template>
     <div class="px-8" >
       <div id="pdf3" ref="content3">
-        <div class="p-4 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200">Rencana dan Realisasi Anggaran Program {{ programs3.name }}</div>
-        <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+        <div class="p-4 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700">Rencana dan Realisasi Anggaran Program {{ programs3.name }}</div>
+        <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
           <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
             Bidang Urusan
           </div>
@@ -10,7 +10,7 @@
              : Perbandingan Perencanaan dan Realisasi
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+        <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
           <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
             Program 
           </div>
@@ -18,7 +18,7 @@
              : Program {{ programs3.name }}
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+        <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
           <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
             Tahun 
           </div>
@@ -26,7 +26,7 @@
              : {{ programs3.date_program }}
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+        <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
           <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
             Dana Anggaran 
           </div>
@@ -34,7 +34,7 @@
              : {{ programs3.budget | currency('Rp. ') }}
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+        <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
           <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
             Realisasi Anggaran 
           </div>
@@ -42,9 +42,9 @@
              : {{ programs3.realized | currency('Rp. ') }}
           </div>
         </div> 
-        <div class="p-2 -mx-3 text-base font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200">Anggaran Kegiatan Program</div>
+        <div class="p-2 -mx-3 text-base font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700">Anggaran Kegiatan Program</div>
         <div v-for="(activity, index) in programs3.activities">
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Kegiatan 
                 </div>
@@ -52,7 +52,7 @@
                      : {{ activity.name }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Organisasi
                 </div>
@@ -60,7 +60,7 @@
                      : Badan Perencanaan Pembangunan Daerah
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Unit
                 </div>
@@ -68,7 +68,7 @@
                      : Badan Perencanaan Pembangunan Daerah
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Lokasi
                 </div>
@@ -76,7 +76,7 @@
                      : Kab. Tanah Laut
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Indikator
                 </div>
@@ -84,7 +84,7 @@
                      : {{ activity.indicator }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Rencana Dokumen
                 </div>
@@ -92,7 +92,7 @@
                      : {{ document[index] }} {{ activity.target }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Realisasi Dokumen
                 </div>
@@ -100,7 +100,7 @@
                      : {{ document2[index] }} {{ activity.target }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Presentase Capaian Target
                 </div>
@@ -108,7 +108,7 @@
                      : {{ document2[index] / document[index] * 100 + ' %' }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                     Dana yang dibutuhkan 
                 </div>
@@ -181,7 +181,7 @@
                                         {{ activity.activity_realized_tw4 | currency('Rp. ') }}
                                     </th>
                                 </tr>
-                                <tr class="bg-gray-100 border-b border-gray-200">
+                                <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                     <th scope="row" class="px-6 py-3 text-center">
                                         Sisa
                                     </th>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">
                    Presentase Anggaran Target
                 </div>
@@ -214,7 +214,7 @@
                      : {{ costTotal2[index] / costTotal[index] * 100 + ' %' }}
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 border-4 border-gray-200">
+            <div class="flex flex-wrap -mx-3 border-4 border-gray-200 dark:border-slate-700">
                 <div class="w-full px-3 py-2 mb-6 text-sm font-bold tracking-wide text-gray-700 uppercase md:w-1/4 md:mb-0">         
                 </div>
             </div>

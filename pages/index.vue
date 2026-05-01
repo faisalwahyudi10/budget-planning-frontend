@@ -11,7 +11,7 @@
         <div class="flex items-center justify-between gap-4">
           <a href="#" id="toggleOpenSidebar" class="lg:hidden">
             <svg
-              class="w-6 h-6 text-dark"
+              class="w-6 h-6 text-dark dark:text-gray-100"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -25,7 +25,7 @@
               ></path>
             </svg>
           </a>
-          <div class="text-[32px] font-semibold text-dark">Dashboard</div>
+          <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Dashboard</div>
         </div>
         
       </section>
@@ -35,7 +35,7 @@
         <div class="mb-[30px]">
           <div class="flex items-center justify-between gap-6">
             <div>
-              <div class="text-xl font-medium text-dark">Statistik</div>
+              <div class="text-xl font-medium text-dark dark:text-gray-100">Statistik</div>
               
             </div>
           </div>
@@ -46,7 +46,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Pegawai</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]">{{ employees.total }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ employees.total }}</div>
               </div>
               <NuxtLink :to="{ name: 'home-employees-create' }"
                 ><img src="/assets/svgs/ric-plus.svg" alt=""
@@ -57,7 +57,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Rencana Program</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]">{{ programs.total }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ programs.total }}</div>
               </div>
               <a href="#">
                 <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -68,7 +68,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-grey">Realisasi Program</p>
-                <div class="text-[32px] font-bold text-dark mt-[6px]">{{ realized.total }}</div>
+                <div class="text-[32px] font-bold text-dark dark:text-gray-100 mt-[6px]">{{ realized.total }}</div>
               </div>
               <a href="#">
                 <img src="/assets/svgs/ric-plus.svg" alt="" />
@@ -86,14 +86,14 @@
             <div class="mb-[30px]">
               <div class="flex items-center justify-between gap-6">
                 <div>
-                  <div class="text-xl font-medium text-dark">Documents</div>
+                  <div class="text-xl font-medium text-dark dark:text-gray-100">Documents</div>
                   <p class="text-grey">Standard procedure</p>
                 </div>
               </div>
             </div>
             <div class="card md:min-h-[468px]">
               <div class="m-auto text-center">
-                <div class="text-xl font-bold text-dark">No Documents</div>
+                <div class="text-xl font-bold text-dark dark:text-gray-100">No Documents</div>
                 <p class="text-grey mt-5 mb-[30px]">
                   Add guidance or design style for <br />
                   your employees in company
@@ -111,14 +111,14 @@
             <div class="mb-[30px]">
               <div class="flex items-center justify-between gap-6">
                 <div>
-                  <div class="text-xl font-medium text-dark">History</div>
+                  <div class="text-xl font-medium text-dark dark:text-gray-100">History</div>
                   <p class="text-grey">Track the flow</p>
                 </div>
               </div>
             </div>
             <div class="card min-h-[468px]">
               <div class="m-auto text-center">
-                <div class="text-xl font-bold text-dark">No History</div>
+                <div class="text-xl font-bold text-dark dark:text-gray-100">No History</div>
                 <p class="text-grey mt-5 mb-[30px]">
                   Information of employees added <br />
                   and promoting shown here

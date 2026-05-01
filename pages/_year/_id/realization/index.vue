@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between gap-4">
         <a href="#" id="toggleOpenSidebar" class="lg:hidden">
           <svg
-            class="w-6 h-6 text-dark"
+            class="w-6 h-6 text-dark dark:text-gray-100"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Realisasi Program {{ programs.name }}</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Realisasi Program {{ programs.name }}</div>
       </div>
     </section>
 
@@ -34,7 +34,7 @@
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
               </div>
-              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white dark:bg-slate-800 border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected disabled value="">-- Pilih Kegiatan --</option>
                 <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
               </select>
@@ -46,7 +46,7 @@
         <div class="w-full">
             <ul class="flex flex-row flex-wrap pt-3 pb-4 mb-0 list-none">
                 <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
-                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-full shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-gray-600 bg-white': openTab !== 1, 'text-white bg-gray-500': openTab === 1}">
+                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-full shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-gray-600 bg-white dark:bg-slate-800': openTab !== 1, 'text-white bg-gray-500': openTab === 1}">
                     Realisasi Program dan Kegiatan Anggaran
                 </a>
                 </li>
@@ -58,17 +58,17 @@
                             <div class="pt-8 pb-11 grid grid-cols-2 gap-[30px]">
                                 <div class="px-8">
                                   <form class="w-full max-w-3xl">
-                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 rounded-lg">Realisasi Indikator Target</div>
-                                    <div class="flex flex-wrap mb-4 -mx-3 border-4 border-gray-200 rounded-lg">
+                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700 rounded-lg">Realisasi Indikator Target</div>
+                                    <div class="flex flex-wrap mb-4 -mx-3 border-4 border-gray-200 dark:border-slate-700 rounded-lg">
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Target Tw1
                                         </label>
                                         <div v-if="activity && resultQuery5">
-                                          <input v-model="resultQuery5[0].document_realized_tw1" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw1">
+                                          <input v-model="resultQuery5[0].document_realized_tw1" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw1">
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw1">
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw1">
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -76,10 +76,10 @@
                                           Target Tw2
                                         </label>
                                         <div v-if="activity && resultQuery5">
-                                          <input v-model="resultQuery5[0].document_realized_tw2" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw2">
+                                          <input v-model="resultQuery5[0].document_realized_tw2" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw2">
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw2">
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw2">
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -87,10 +87,10 @@
                                           Target Tw3
                                         </label>
                                         <div v-if="activity && resultQuery5">
-                                          <input v-model="resultQuery5[0].document_realized_tw3" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw3">
+                                          <input v-model="resultQuery5[0].document_realized_tw3" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw3">
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw3">
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw3">
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -98,24 +98,24 @@
                                           Target Tw4
                                         </label>
                                         <div v-if="activity && resultQuery5">
-                                          <input v-model="resultQuery5[0].document_realized_tw4" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw4">
+                                          <input v-model="resultQuery5[0].document_realized_tw4" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw4">
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw4">
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-50 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="number" placeholder="Target Tw4">
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 rounded-lg">Realisasi Anggaran Kegiatan</div>
-                                    <div class="flex flex-wrap mb-4 -mx-3 border-4 border-gray-200 rounded-lg">
+                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700 rounded-lg">Realisasi Anggaran Kegiatan</div>
+                                    <div class="flex flex-wrap mb-4 -mx-3 border-4 border-gray-200 dark:border-slate-700 rounded-lg">
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Anggaran Tw1
                                         </label>
                                         <div v-if="actual1">
-                                          <input v-model="actual1" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
+                                          <input v-model="actual1" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -123,10 +123,10 @@
                                           Anggaran Tw2
                                         </label>
                                         <div v-if="actual2">
-                                          <input v-model="actual2" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
+                                          <input v-model="actual2" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -134,10 +134,10 @@
                                           Anggaran Tw3
                                         </label>
                                         <div v-if="actual3">
-                                          <input v-model="actual3" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
+                                          <input v-model="actual3" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
                                         </div>
                                       </div>
                                       <div class="w-full px-3 pt-5 pb-5 mb-6 md:w-1/4 md:mb-0">
@@ -145,21 +145,21 @@
                                           Anggaran Tw4
                                         </label>
                                         <div v-if="actual4">
-                                          <input v-model="actual4" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
+                                          <input v-model="actual4" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
                                         </div>
                                         <div v-else>
-                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
+                                          <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
                                         </div>
                                       </div>
                                       <p class="px-3 pb-5 text-xs italic text-gray-600">Data hanya bisa diread</p>
                                     </div>
-                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 rounded-lg">Total Realisasi Anggaran Kegiatan</div>
-                                    <div class="flex flex-wrap mb-6 -mx-3 border-4 border-gray-200 rounded-lg">
+                                    <div class="p-2 mb-4 -mx-3 text-xs font-bold tracking-wide text-center text-gray-700 uppercase border-4 border-gray-200 dark:border-slate-700 rounded-lg">Total Realisasi Anggaran Kegiatan</div>
+                                    <div class="flex flex-wrap mb-6 -mx-3 border-4 border-gray-200 dark:border-slate-700 rounded-lg">
                                       <div class="w-full px-3 pt-5 pb-5">
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-password">
                                           Anggaran Kegiatan
                                         </label>
-                                        <input v-model="costTotal7" class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="number" placeholder="Anggaran Program" readonly>
+                                        <input v-model="costTotal7" class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 border border-gray-200 dark:border-slate-700 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white dark:bg-slate-800 focus:border-gray-500" id="grid-password" type="number" placeholder="Anggaran Program" readonly>
                                         <p class="text-xs italic text-gray-600">Data hanya bisa diread</p>
                                       </div>
                                     </div>
@@ -199,7 +199,7 @@
                                                     Triwulan 4
                                                 </th>
                                             </tr>
-                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                            <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                               <th scope="row" class="px-3 py-4 text-center">
                                                     Anggaran
                                                 </th>
@@ -233,7 +233,7 @@
                                                 {{ resultQuery5[0].document_plan_tw4 }} {{ resultQuery5[0].target }}
                                               </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
                                             </tr>
-                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                            <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                               <th scope="row" colspan="2" class="px-6 py-3 text-center">
                                                 Total
                                               </th>
@@ -275,7 +275,7 @@
                                                     Triwulan 4
                                                 </th>
                                             </tr>
-                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                            <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                               <th scope="row" class="px-3 py-4 text-center">
                                                     Realisasi
                                                 </th>
@@ -309,7 +309,7 @@
                                                 {{ resultQuery5[0].document_realized_tw4 }} {{ resultQuery5[0].target }}
                                               </th><th scope="row" class="px-6 py-3 text-center" v-else></th>
                                             </tr>
-                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                            <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                               <th scope="row" colspan="2" class="px-6 py-3 text-center">
                                                 Total
                                               </th>
@@ -339,7 +339,7 @@
                                                     Realisasi
                                                 </th>
                                             </tr>
-                                            <tr class="bg-gray-100 border-b border-gray-200">
+                                            <tr class="bg-gray-100 border-b border-gray-200 dark:border-slate-700">
                                               <th scope="row" class="px-3 py-4 text-center">
                                                     {{ programs.budget | currency('Rp. ') }}
                                                 </th>
@@ -365,14 +365,14 @@
                           <div v-if="showModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Tambah Realisasi Rincian Belanja
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openCreate()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openCreate()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>
@@ -446,14 +446,14 @@
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
-                              <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                              <div class="relative flex flex-col w-full bg-white dark:bg-slate-800 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                                 <!--header-->
                                 <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                                   <h5 class="text-xl font-semibold text-blue-500">
                                     Update Rincian Belanja
                                   </h5>
-                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
-                                    <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                                  <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black dark:text-white bg-transparent border-0 outline-none opacity-5 focus:outline-none" v-on:click="openUpdate()">
+                                    <span class="block w-6 h-6 text-2xl text-black dark:text-white bg-transparent outline-none opacity-5 focus:outline-none">
                                       ×
                                     </span>
                                   </button>

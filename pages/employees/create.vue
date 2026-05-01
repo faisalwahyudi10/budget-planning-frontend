@@ -1,6 +1,6 @@
 <template>
     <section class="py-[70px] flex flex-col items-center justify-center px-4">
-        <div class="text-[32px] font-semibold text-dark">Tambah Data Pegawai</div>
+        <div class="text-[32px] font-semibold text-dark dark:text-gray-100">Tambah Data Pegawai</div>
         <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
             Tambahkan Pegawai <br />
            Agar BAPPEDA Tanah Laut Semakin Jaya

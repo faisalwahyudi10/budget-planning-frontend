@@ -4,7 +4,7 @@
             <div class="p-2 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase">LAPORAN REALISASI ANGGARAN BELANJA DAERAH</div>
             <div class="p-2 -mx-3 text-lg font-bold tracking-wide text-center text-gray-700 uppercase">Program Seluruh Tahun Anggaran</div>
             <div class="p-2 -mx-3 text-sm font-bold tracking-wide text-center text-gray-700 uppercase"></div>
-            <div class="mt-6 bg-white"> 
+            <div class="mt-6 bg-white dark:bg-slate-800"> 
                 <table class="w-full border border-collapse border-black table-auto">
                 <thead>
                 <tr>

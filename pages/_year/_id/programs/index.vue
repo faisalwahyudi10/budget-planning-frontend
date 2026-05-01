@@ -29,7 +29,16 @@
       <!-- Section Header -->
       <div class="mb-[30px]">
         <div class="flex items-center w-full mb-5">   
-          
+          <label for="simple-search" class="sr-only">Search</label>
+          <div class="relative w-full">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+              </div>
+              <select v-model="searchQuery" id="simple-search" class="block w-full p-3 pl-10 text-lg text-gray-900 bg-white border border-gray-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 h-14 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected value="">Cari Berdasarkan Tahun</option>
+                <option v-for="year in years" :value="year">{{ year }}</option>
+              </select>
+          </div>
         </div>
         <div
           class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
@@ -38,9 +47,9 @@
             <div class="text-xl font-medium text-dark">Program</div>
             <p class="text-grey">Rencana dan Realisasi</p>
           </div>
-          <NuxtLink :to="{ name: 'year-id-programs-create' }" class="btn btn-primary"
+          <!-- <NuxtLink :to="{ name: 'year-id-programs-create' }" class="btn btn-primary"
             >Tambah Program</NuxtLink
-          >
+          > -->
         </div>
       </div>
 
@@ -72,13 +81,13 @@
                           <th scope="col" class="px-6 py-3">
                               Pegawai
                           </th>
-                          <th scope="col" class="px-6 py-3">
+                          <!-- <th scope="col" class="px-6 py-3">
                               Aksi
-                          </th>
+                          </th> -->
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(program, n ) in programs">
+                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(program, n ) in resultQuery">
                           <td class="px-6 py-4">{{ n+1 }}</td>
                           <td class="px-6 py-4">{{ program.name }}</td>
                           <td class="px-6 py-4">{{ program.date_program }}</td>
@@ -86,9 +95,9 @@
                           <td class="px-6 py-4" v-if="program.realized == '' || program.realized == null || program.realized == 0">Belum Diinput</td><td class="px-6 py-4" v-else>{{ program.realized | currency('Rp. ') }}</td>
                           <td class="px-6 py-4">{{ program.budget - program.realized | currency('Rp. ') }}</td>
                           <td class="px-6 py-4">{{ program.user.employee.name }}</td>
-                          <td class="px-6 py-4">
+                          <!-- <td class="px-6 py-4">
                             <a href="#" v-on:click="openUpdate({id:program.id, name:program.name, date_program:program.date_program, budget:program.budget, realized:program.realized, user_id:program.user_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" bounce title="Edit Data Program" /></a>
-                          </td>
+                          </td> -->
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
                               <!--content-->
@@ -162,7 +171,7 @@
 <script>
 export default {
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     data() {
       return {
           users: [],
@@ -191,7 +200,8 @@ export default {
         this.programs = this.$axios.get('/program', {
             params: {
                 limit: 100,
-                date_program: this.$route.params.year,
+                order_year: 1,
+                user_id: this.$auth.user.id,
             } 
         }) .then(({ data }) => {
                   this.programs = data.result.data
@@ -211,6 +221,9 @@ export default {
     },
     fetch() {
         this.users = this.$axios.get('/user?is_verified=1', { 
+          params: {
+            role: 2,
+          }
         }) .then(({ data }) => {
                     this.users = data.result.data
               })

@@ -57,15 +57,11 @@
         <div class="w-full">
             <ul class="flex flex-row flex-wrap pt-3 pb-4 mb-0 list-none">
                 <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
-                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-lg shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-primary bg-white': openTab !== 1, 'text-white bg-primary': openTab === 1}">
+                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-lg shadow-lg" v-on:click="toggleTabs(1)" v-bind:class="{'text-dark bg-secondary': openTab !== 1, 'text-dark bg-secondary': openTab === 1}">
                     Perencanaan Rincian Belanja
                 </a>
                 </li>
-                <li class="flex-auto mr-2 -mb-px text-center last:mr-0">
-                <a class="block px-5 py-3 text-sm font-bold leading-normal uppercase rounded-lg shadow-lg" v-on:click="toggleTabs(2)" v-bind:class="{'text-gray-500 bg-white': openTab !== 2, 'text-white bg-gray-500': openTab === 2}">
-                    Realisasi Rincian Belanja
-                </a>
-                </li>
+                
             </ul>
             <div class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-[#fafaf9] rounded shadow-lg">
                 <div class="flex-auto px-4 py-5">
@@ -132,8 +128,17 @@
                                                 <th scope="col" class="px-6 py-3">
                                                     {{ costTotal4 | currency('Rp. ') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery3">
-                                                    {{ tw.jumlah | currency('Rp. ') }}
+                                                <th scope="col" class="px-6 py-3" v-if="budgetTw1">
+                                                    {{ budgetTw1 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-if="budgetTw2">
+                                                    {{ budgetTw2 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-if="budgetTw3">
+                                                    {{ budgetTw3 | currency('Rp. ') }}
+                                                </th>
+                                                <th scope="col" class="px-6 py-3" v-if="budgetTw4">
+                                                    {{ budgetTw4 | currency('Rp. ') }}
                                                 </th>
                                             </tr>
                                         </tbody>
@@ -160,7 +165,7 @@
                                                     Jenis
                                                 </th>
                                                 <th scope="col" class="px-4 py-3">
-                                                    Triwulan
+                                                    Bulan
                                                 </th>
                                                 <th scope="col" class="px-4 py-3">
                                                     Jumlah
@@ -186,16 +191,16 @@
                                                 <td class="px-4 py-4">{{ expense.expense_type }}</td>
                                                 <td class="px-4 py-4">{{ expense.detail_type.name }}</td>
                                                 <td class="px-4 py-4">{{ expense.item_type }}</td>
-                                                <td class="px-4 py-4">Triwulan {{ expense.tw }}</td>
+                                                <td class="px-4 py-4">{{ getMonthName(expense.month) + ' / Tw ' + expense.tw }}</td>
                                                 <td class="px-4 py-4">{{ expense.amount }} {{ expense.unit_type }}</td>
                                                 <td class="px-4 py-4">{{ expense.cost | currency('Rp. ') }}</td>
                                                 <td class="px-4 py-4">{{ costTotal[index] | currency('Rp. ') }}</td>
                                                 <td class="px-4 py-4" v-if="expense.realized == null || expense.amount_real == null"><button type="button" class="inline-block px-4 py-2 text-xs font-medium leading-tight text-blue-600 uppercase transition duration-150 ease-in-out border-2 border-blue-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Perencanaan</button></td><td class="px-4 py-4" v-else><button type="button" class="inline-block px-4 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Terealisasi</button></td>
                                                 
                                                 <td class="px-4 py-4">
-                                                    <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount_real, realized:expense.realized})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a>
-                                                    <a href="#" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, expense_type:expense.expense_type, item_type:expense.item_type, detailType_id:expense.detailType_id, unit_type:expense.unit_type, cost:expense.cost, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
-                                                    <a href="#" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
+                                                    <!-- <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount, realized:expense.cost})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a> -->
+                                                    <a href="#" v-if="expense.realized == null || expense.amount_real == null" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, expense_type:expense.expense_type, item_type:expense.item_type, detailType_id:expense.detailType_id, unit_type:expense.unit_type, cost:expense.cost, month:expense.month, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
+                                                    <a href="#" v-if="expense.realized == null || expense.amount_real == null" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -203,138 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                            <div class="pt-8 pb-11">
-                                <p v-if="$fetchState.pending">Fetching data...</p>
-                                <div class="relative overflow-x-auto">
-                                    <p v-if="$fetchState.pending"><v-icon name="sync" spin></v-icon>...</p>
-
-                                    <table class="w-full mb-10 text-base text-left text-center text-gray-500 dark:text-gray-400">
-                                        <thead class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                            <tr>
-                                                <th colspan="6" scope="col" class="px-6 py-3">
-                                                    Total Rincian Belanja
-                                                </th>
-                                            </tr>
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                                <th scope="col" class="px-6 py-3">
-                                                  Desc
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                  Total
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Tw1
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Tw2
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Tw3
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Tw4
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-base text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3">
-                                                  Anggaran
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    {{ costTotal3 | currency('Rp. ') }}
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
-                                                    {{ tw.activity_budget_tw1 | currency('Rp. ') }}
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
-                                                    {{ tw.activity_budget_tw2 | currency('Rp. ') }}
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
-                                                    {{ tw.activity_budget_tw3 | currency('Rp. ') }}
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery4">
-                                                    {{ tw.activity_budget_tw4 | currency('Rp. ') }}
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3">
-                                                    Realisasi
-                                                </th>
-                                                <th scope="col" class="px-6 py-3">
-                                                    {{ costTotal5 | currency('Rp. ') }}
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" v-for="(tw) in resultQuery5">
-                                                    {{ tw.jumlah | currency('Rp. ') }}
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <div class="text-[22px] font-semibold text-dark">Data Realisasi Rincian Belanja</div>
-
-                                    <table class="w-full mt-5 text-sm text-left text-center text-gray-500 dark:text-gray-400">
-                                        <thead class="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                            <tr>
-                                                <th scope="col" class="px-5 py-3">
-                                                    No
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Nama
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Belanja
-                                                </th>
-                                                <th scope="col" class="w-2/12 px-5 py-3">
-                                                    Detail Belanja
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Jenis
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Triwulan
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Jumlah
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Harga
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Total
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Status
-                                                </th>
-                                                <th scope="col" class="px-5 py-3">
-                                                    Aksi
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="(expense, index ) in resultQuery2">
-                                                <td class="px-5 py-4">{{ index+1 }}</td>
-                                                <td class="px-5 py-4">{{ expense.name }}</td>
-                                                <td class="px-5 py-4">{{ expense.expense_type }}</td>
-                                                <td class="px-5 py-4">{{ expense.detail_type.name }}</td>
-                                                <td class="px-5 py-4">{{ expense.item_type }}</td>
-                                                <td class="px-5 py-4">Triwulan {{ expense.tw }}</td>
-                                                <td class="px-5 py-4">{{ expense.amount_real }} {{ expense.unit_type }}</td>
-                                                <td class="px-5 py-4">{{ expense.realized | currency('Rp. ') }}</td>
-                                                <td class="px-5 py-4">{{ costTotal2[index] | currency('Rp. ') }}</td>
-                                                <td class="px-5 py-4" v-if="expense.realized == null || expense.amount_real == null"><button type="button" class="inline-block px-5 py-2 text-xs font-medium leading-tight text-blue-600 uppercase transition duration-150 ease-in-out border-2 border-blue-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Perencanaan</button></td><td class="px-5 py-4" v-else><button type="button" class="inline-block px-5 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Terealisasi</button></td>
-                                                
-                                                <td class="px-5 py-4">
-                                                    <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount_real, realized:expense.realized})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a>
-                                                    <a href="#" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 </div>
@@ -463,6 +337,26 @@
                                       </td>
                                     </tr>
                                     <tr>
+                                      <th class="p-3 text-left">Bulan</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="getData.month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled value="">-- Pilih Bulan --</option>
+                                          <option value="1">Januari</option>
+                                          <option value="2">Februari</option>
+                                          <option value="3">Maret</option>
+                                          <option value="4">April</option>
+                                          <option value="5">Mei</option>
+                                          <option value="6">Juni</option>
+                                          <option value="7">Juli</option>
+                                          <option value="8">Agustus</option>
+                                          <option value="9">September</option>
+                                          <option value="10">Oktober</option>
+                                          <option value="11">November</option>
+                                          <option value="12">Desember</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <!-- <tr>
                                       <th class="p-3 text-left">Triwulan</th>
                                       <td class="p-3">
                                         <select id="countries" v-model="getData.tw" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -473,7 +367,7 @@
                                           <option value="4">Triwulan 4</option>
                                         </select>
                                       </td>
-                                    </tr>
+                                    </tr> -->
                                   </table>
                                 </div>
                                 <!--footer-->
@@ -558,9 +452,29 @@
                                       </td>
                                     </tr>
                                     <tr>
+                                      <th class="p-3 text-left">Bulan</th>
+                                      <td class="p-3">
+                                        <select id="countries" v-model="loadData.month" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option selected disabled value="">-- Pilih Bulan --</option>
+                                          <option value="1">Januari</option>
+                                          <option value="2">Februari</option>
+                                          <option value="3">Maret</option>
+                                          <option value="4">April</option>
+                                          <option value="5">Mei</option>
+                                          <option value="6">Juni</option>
+                                          <option value="7">Juli</option>
+                                          <option value="8">Agustus</option>
+                                          <option value="9">September</option>
+                                          <option value="10">Oktober</option>
+                                          <option value="11">November</option>
+                                          <option value="12">Desember</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <!-- <tr>
                                       <th class="p-3 text-left">Triwulan</th>
                                       <td class="p-3">
-                                        <select id="countries" v-model="loadData.tw" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <select id="countries" disabled v-model="loadData.tw" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                           <option selected disabled value="">-- Pilih Triwulan --</option>
                                           <option value="1">Triwulan 1</option>
                                           <option value="2">Triwulan 2</option>
@@ -568,7 +482,7 @@
                                           <option value="4">Triwulan 4</option>
                                         </select>
                                       </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                       <th class="p-3 text-left">Harga</th>
                                       <td class="p-3">
@@ -598,7 +512,7 @@
 <script>
 export default {
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     data() {
       return {
           activities: [],
@@ -617,7 +531,7 @@ export default {
             detailType_id: null,
             unit_type: null,
             cost: null,
-            tw: null,
+            month: null,
             activity_id: null,
           },
           viewModal: false,
@@ -629,7 +543,7 @@ export default {
             detailType_id: '',
             unit_type: '',
             cost: '',
-            tw: '',
+            month: '',
             activity_id: '',
             program_id: this.$route.params.id,
           },
@@ -767,6 +681,7 @@ export default {
             this.getData.unit_type = ''
             this.getData.item_type = ''
             this.getData.cost = ''
+            this.getData.month = ''
             this.getData.tw = ''
         } catch (error) {
             console.log(error)
@@ -780,6 +695,11 @@ export default {
             this.getExpenses() + this.getExpenses1() + this.getActivities() + this.getTotalTw() + this.getTotalRealTw()
           )
         }
+      },
+      getMonthName(monthNumber) {
+        const date = new Date();
+        date.setMonth(monthNumber - 1);
+        return date.toLocaleString('id-ID', { month: 'long' });
       },
     },
     computed : {
@@ -886,6 +806,160 @@ export default {
             return total + parseInt(item.jumlah) 
             }, 0);
           }
+        },
+        budgetTw1() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            
+              yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 1
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+          }
+        },
+        budgetTw2() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 2
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        budgetTw3() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 3
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        budgetTw4() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 4
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual1() {
+          if(this.resultQuery5){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery5).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            
+              yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 1
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+          }
+        },
+        actual2() {
+          if(this.resultQuery5){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery5).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 2
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual3() {
+          if(this.resultQuery5){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery5).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 3
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual4() {
+          if(this.resultQuery5){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery5).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 4
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
         },
     },
 };

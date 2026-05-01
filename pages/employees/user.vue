@@ -20,6 +20,7 @@
                     <option selected disabled>-- Pilih Role --</option>
                     <option value="1">Admin</option>
                     <option value="2">Pegawai</option>
+                    <option value="3">Seketaris</option>
                 </select>
             </div>
 
@@ -33,7 +34,7 @@
 <script>
 export default {
     layout: 'form',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     methods: {
         updateUsername(event) {
             this.$store.commit('employee/updateUsername', event.target.value)

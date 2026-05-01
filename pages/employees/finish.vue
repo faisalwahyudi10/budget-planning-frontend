@@ -26,7 +26,7 @@
 <script>
 export default {
     layout: 'form',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     data() {
         return {
             photo: '',
@@ -82,6 +82,9 @@ export default {
                 this.$store.commit('employee/updatePhone', '')
                 this.$store.commit('employee/updateEmail', '')
                 this.$store.commit('employee/updateAddress', '')
+                this.$store.commit('employee/updateUsername', '')
+                this.$store.commit('employee/updatePassword', '')
+                this.$store.commit('employee/updateRole', '')
 
                 // Redirect to employee page
                 this.$router.push({

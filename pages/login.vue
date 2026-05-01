@@ -35,13 +35,12 @@
 <script>
 export default {
   middleware: 'auth',
-  auth: 'guest',
+  auth: [false, 'guest'],
   data() {
     return {
       login: {
         username: '',
         password: '',
-        role: '',
       },
       selectedYear: '',
     }
@@ -49,7 +48,6 @@ export default {
   methods: {
     userLogin() {
       try {
-        
           this.$auth.loginWith('local', { data: this.login })
           .then(response => {
             if (this.$auth.user.role == 1) {
@@ -67,7 +65,16 @@ export default {
                             },
                         })
             }
-                    }) 
+            if (this.$auth.user.role == 3) {
+                        console.log(response)
+                        this.$router.push({
+                            name: 'seyear-se',
+                            params: {
+                                seyear: this.selectedYear ? this.selectedYear : new Date().getFullYear(),
+                            },
+                        })
+            }
+          }) 
         
         
       } catch (err) {

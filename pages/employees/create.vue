@@ -40,7 +40,7 @@
 <script>
 export default {
     layout: 'form',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     computed: {
         /* Use a computed property instead */
         name() {

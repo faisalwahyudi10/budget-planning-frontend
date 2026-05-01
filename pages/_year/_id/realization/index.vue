@@ -111,8 +111,8 @@
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Anggaran Tw1
                                         </label>
-                                        <div v-if="costTotal8">
-                                          <input v-model="costTotal8[0]" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
+                                        <div v-if="actual1">
+                                          <input v-model="actual1" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
                                         </div>
                                         <div v-else>
                                           <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw1" readonly>
@@ -122,8 +122,8 @@
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Anggaran Tw2
                                         </label>
-                                        <div v-if="costTotal8">
-                                          <input v-model="costTotal8[1]" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
+                                        <div v-if="actual2">
+                                          <input v-model="actual2" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
                                         </div>
                                         <div v-else>
                                           <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw2" readonly>
@@ -133,8 +133,8 @@
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Anggaran Tw3
                                         </label>
-                                        <div v-if="costTotal8">
-                                          <input v-model="costTotal8[2]" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
+                                        <div v-if="actual3">
+                                          <input v-model="actual3" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
                                         </div>
                                         <div v-else>
                                           <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw3" readonly>
@@ -144,8 +144,8 @@
                                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="grid-city">
                                           Anggaran Tw4
                                         </label>
-                                        <div v-if="costTotal8">
-                                          <input v-model="costTotal8[3]" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
+                                        <div v-if="actual4">
+                                          <input v-model="actual4" class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
                                         </div>
                                         <div v-else>
                                           <input class="block w-full px-4 py-3 leading-tight text-gray-700 border border-gray-200 rounded appearance-none bg-slate-100 focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Anggaran Tw4" readonly>
@@ -203,8 +203,17 @@
                                               <th scope="row" class="px-3 py-4 text-center">
                                                     Anggaran
                                                 </th>
-                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery3" v-for="(tw) in resultQuery3">
-                                                {{ tw.jumlah | currency('Rp. ') }}
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="budgetTw1">
+                                                {{ budgetTw1 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="budgetTw2">
+                                                {{ budgetTw2 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="budgetTw3">
+                                                {{ budgetTw3 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="budgetTw4">
+                                                {{ budgetTw4 | currency('Rp. ') }}
                                               </th>
                                             </tr>
                                             <tr class="border-b bg-slate-0 border-slate-50">
@@ -270,8 +279,17 @@
                                               <th scope="row" class="px-3 py-4 text-center">
                                                     Realisasi
                                                 </th>
-                                              <th scope="row" class="px-6 py-3 text-center" v-if="resultQuery7" v-for="(twr, index) in resultQuery7">
-                                                {{ twr.jumlah | currency('Rp. ') }}
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="actual1">
+                                                {{ actual1 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="actual2">
+                                                {{ actual2 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="actual3">
+                                                {{ actual3 | currency('Rp. ') }}
+                                              </th>
+                                              <th scope="row" class="px-6 py-3 text-center" v-if="actual4">
+                                                {{ actual4 | currency('Rp. ') }}
                                               </th>
                                             </tr>
                                             <tr class="border-b bg-slate-0 border-slate-50">
@@ -512,7 +530,7 @@
 <script>
 export default {
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     data() {
       return {
           activities: [],
@@ -662,15 +680,15 @@ export default {
       realizationBudget() {
         try {
             this.$axios.post('/activity/realization/'+ this.searchQuery, {
-              activity_realized_tw1: this.resultQuery7[0] ? this.resultQuery7[0].jumlah : 0,
-              activity_realized_tw2: this.resultQuery7[1] ? this.resultQuery7[1].jumlah : 0,
-              activity_realized_tw3: this.resultQuery7[2] ? this.resultQuery7[2].jumlah : 0,
-              activity_realized_tw4: this.resultQuery7[3] ? this.resultQuery7[3].jumlah : 0,
+              activity_realized_tw1: this.actual1 ? this.actual1 : 0,
+              activity_realized_tw2: this.actual2 ? this.actual2 : 0,
+              activity_realized_tw3: this.actual3 ? this.actual3 : 0,
+              activity_realized_tw4: this.actual4 ? this.actual4 : 0,
               
-              document_realized_tw1: this.resultQuery5[0].document_realized_tw1 ? this.resultQuery5[0].document_realized_tw1 : null,
-              document_realized_tw2: this.resultQuery5[0].document_realized_tw2 ? this.resultQuery5[0].document_realized_tw2 : null,
-              document_realized_tw3: this.resultQuery5[0].document_realized_tw3 ? this.resultQuery5[0].document_realized_tw3 : null,
-              document_realized_tw4: this.resultQuery5[0].document_realized_tw4 ? this.resultQuery5[0].document_realized_tw4 : null,
+              document_realized_tw1: this.resultQuery5[0].document_realized_tw1 ? this.resultQuery5[0].document_realized_tw1 : 0,
+              document_realized_tw2: this.resultQuery5[0].document_realized_tw2 ? this.resultQuery5[0].document_realized_tw2 : 0,
+              document_realized_tw3: this.resultQuery5[0].document_realized_tw3 ? this.resultQuery5[0].document_realized_tw3 : 0,
+              document_realized_tw4: this.resultQuery5[0].document_realized_tw4 ? this.resultQuery5[0].document_realized_tw4 : 0,
             }).then(response => this.getActivity2());
             this.realizationProgram()
         } catch (error) {
@@ -941,8 +959,161 @@ export default {
 
                 return ss.reduce((arr, val) => {
                     return arr + Number(val)
-                },0);
+                },0); 
+        },
+        budgetTw1() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
             
+              yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 1
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+          }
+        },
+        budgetTw2() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 2
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        budgetTw3() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 3
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        budgetTw4() {
+          if(this.resultQuery3){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery3).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 4
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual1() {
+          if(this.resultQuery7){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery7).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            
+              yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 1
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+          }
+        },
+        actual2() {
+          if(this.resultQuery7){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery7).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 2
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual3() {
+          if(this.resultQuery7){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery7).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 3
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
+        },
+        actual4() {
+          if(this.resultQuery7){
+              let ss = [];
+              let yy = [];
+            Object.entries(this.resultQuery7).forEach(([key, item]) => {
+                ss.push(item);
+            });
+            yy = ss.filter((item)=>{
+                        let columns = item.tw;
+                          return columns == 4
+                      })
+            if (yy.length) {
+              return yy[0].jumlah
+            } else if (!yy.length) {
+              let tt = [{"jumlah":"0"}]
+              return tt[0].jumlah
+            }
+            }
         },
     },
 };

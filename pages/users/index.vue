@@ -123,7 +123,7 @@
                           <td class="px-6 py-4">{{ user.employee.name }}</td>
                           <td class="px-6 py-4">{{ user.employee.nik }}</td>
                           <td class="px-6 py-4">{{ user.username }}</td>
-                          <td class="px-6 py-4" v-if="user.role == 1">Admin</td><td class="px-6 py-4" v-else-if="user.role == 2">Pegawai</td>
+                          <td class="px-6 py-4" v-if="user.role == 1">Admin</td><td class="px-6 py-4" v-else-if="user.role == 2">Pegawai</td><td class="px-6 py-4" v-else-if="user.role == 3">Seketaris</td>
                           <td class="px-6 py-4" v-if="user.status == 1"><button type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-green-500 uppercase transition duration-150 ease-in-out border-2 border-green-500 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Aktif</button></td>
                           <td class="px-6 py-4" v-else-if="user.status == 0"><button type="button" class="inline-block px-6 py-2 text-xs font-medium leading-tight text-red-600 uppercase transition duration-150 ease-in-out border-2 border-red-600 rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0">Nonaktif</button></td>
                           <td class="px-6 py-4">
@@ -198,6 +198,7 @@
                                           <option selected disabled>-- Pilih Role --</option>
                                           <option value="1">Admin</option>
                                           <option value="2">Pegawai</option>
+                                          <option value="3">Seketaris</option>
                                         </select>
                                       </td>
                                     </tr>
@@ -238,7 +239,7 @@
 <script>
 export default {
   layout: 'dashboard',
-  middleware: 'auth',
+  middleware: ['auth', 'onlyAdmin'],
   data() {
     return {
         reset: {

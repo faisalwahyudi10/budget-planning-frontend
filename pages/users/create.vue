@@ -20,6 +20,7 @@
                     <option selected disabled>-- Pilih Role --</option>
                     <option value="1">Admin</option>
                     <option value="2">Pegawai</option>
+                    <option value="3">Sekataris</option>
                 </select>
             </div>
             <div class="form-group">
@@ -39,7 +40,7 @@
 <script>
 export default {
     layout: 'form',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     data() {
       return {
         users: {

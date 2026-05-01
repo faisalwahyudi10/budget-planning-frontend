@@ -238,7 +238,7 @@
 <script>
 export default {
   layout: 'dashboardPegawai',
-  middleware: 'auth',
+  middleware: ['auth', 'onlyEmployee'],
   data() {
     return {
         photo:'',

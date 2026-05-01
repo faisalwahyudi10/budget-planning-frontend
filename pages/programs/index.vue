@@ -171,7 +171,7 @@
 <script>
 export default {
     layout: 'dashboard',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     data() {
       return {
           users: [],
@@ -200,7 +200,7 @@ export default {
         this.programs = this.$axios.get('/program', {
             params: {
                 limit: 100,
-                date_program: this.$route.params.year,
+                order_year: 1,
             } 
         }) .then(({ data }) => {
                   this.programs = data.result.data
@@ -220,6 +220,9 @@ export default {
     },
     fetch() {
         this.users = this.$axios.get('/user?is_verified=1', { 
+          params: {
+            role: 2,
+          }
         }) .then(({ data }) => {
                     this.users = data.result.data
               })

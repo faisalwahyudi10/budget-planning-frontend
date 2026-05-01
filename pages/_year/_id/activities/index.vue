@@ -100,49 +100,49 @@
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Anggaran Tw1 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.b_tw1 | currency('Rp. ') }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw1 == null || passedData.r_tw1 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw1 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.r_tw1 | currency('Rp. ') }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Anggaran Tw2 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.b_tw2 | currency('Rp. ') }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw2 == null || passedData.r_tw2 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw2 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.r_tw2 | currency('Rp. ') }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Anggaran Tw3 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.b_tw3 | currency('Rp. ') }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw3 == null || passedData.r_tw3 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw3 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.r_tw3 | currency('Rp. ') }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Anggaran Tw4 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.b_tw4 | currency('Rp. ') }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw4 == null || passedData.r_tw4 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.r_tw4 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.r_tw4 | currency('Rp. ') }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Indikator Target Tw1 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.dp_tw1 }} {{ passedData.target }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw1 == null || passedData.dr_tw1 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw1 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.dr_tw1 }} {{ passedData.target }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Indikator Target Tw2 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.dp_tw2 }} {{ passedData.target }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw2 == null || passedData.dr_tw2 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw2 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.dr_tw2 }} {{ passedData.target }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Indikator Target Tw3 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.dp_tw3 }} {{ passedData.target }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw3 == null || passedData.dr_tw3 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw3 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.dr_tw3 }} {{ passedData.target }} </td>
                       </tr>
                       <tr>
                         <th class="p-4 text-left border border-slate-300 ..."> Indikator Target Tw4 :</th>
                         <td class="p-4 text-left border border-slate-300 ..."> {{ passedData.dp_tw4 }} {{ passedData.target }} </td>
-                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw4 == null || passedData.dr_tw4 == 0"> Belum ada data</td>
+                        <td class="p-4 text-left border border-slate-300 ..." v-if="passedData.dr_tw4 == null"> Belum ada data</td>
                         <td class="p-4 text-left border border-slate-300 ..." v-else> {{ passedData.dr_tw4 }} {{ passedData.target }} </td>
                       </tr>
                     </table>
@@ -172,7 +172,7 @@
 <script>
 export default {
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     data() {
       return {
           searchQuery: null,

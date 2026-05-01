@@ -51,6 +51,7 @@ export default {
         params: {
                 first_year: last,
                 last_year: first,
+                group_year: 1,
             }
       }) .then(({ data }) => {
                     this.programs = data.result.data

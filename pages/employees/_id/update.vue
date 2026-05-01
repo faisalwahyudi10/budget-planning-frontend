@@ -52,7 +52,7 @@
 <script>
 export default {
     layout: 'form',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     data() {
       return {
         employees: {

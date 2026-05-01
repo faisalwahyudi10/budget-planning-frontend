@@ -137,7 +137,7 @@
 <script>
 export default {
     layout: 'dashboard',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyAdmin'],
     data() {
       return {
           employees: [],

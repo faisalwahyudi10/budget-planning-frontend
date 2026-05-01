@@ -21,7 +21,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Realisasi Program {{  }}</div>
+        <div class="text-[32px] font-semibold text-dark">Grafik Reports</div>
       </div>
     </section>
 
@@ -73,7 +73,7 @@
                                   </div>
                                   <div id="chart2" class="border-4 border-gray-200" ref="content2">
                                       <div class="pb-10">
-                                        <div class="p-10 text-lg font-bold tracking-wide text-center text-gray-700 uppercase">Grafik Anggaran Kegiatan Program</div>
+                                        <div class="p-10 text-lg font-bold tracking-wide text-center text-gray-700 uppercase">Grafik Anggaran Kegiatan Program {{ programs.name }}</div>
                                         <PieChart />
                                       </div>
                                     </div>
@@ -105,7 +105,7 @@ import PieChart from "/components/PieChart";
 
 export default {
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     components: {
       BarChart,
       PieChart
@@ -113,7 +113,11 @@ export default {
     data() {
         return {
             openTab: 1,
+            programs: [],
         }
+    },
+    mounted() {
+        this.getProgram()
     },
     methods: {
         generateChart(){
@@ -136,6 +140,15 @@ export default {
         },
         toggleTabs: function(tabNumber){
             this.openTab = tabNumber
+        },
+        getProgram() {
+            this.programs = this.$axios.get('/program', {
+                    params: {
+                        id: this.$route.params.id,
+                    }
+            }) .then(({ data }) => {
+                            this.programs = data.result
+                        })
         },
     }
     

@@ -1,6 +1,6 @@
 <template>
     <!-- Sidebar -->
-        <div class="hidden lg:block fixed lg:max-w-[295px] w-full overflow-y-auto h-full bg-white z-[999]" id="sidebarHRIS">
+        <div class="hidden overflow-x-hidden lg:block fixed lg:max-w-[295px] w-full overflow-y-auto h-full bg-white z-[999]" id="sidebarHRIS">
             <div class="px-6 py-[50px] gap-y-[50px] flex flex-col">
                 <div class="flex items-center justify-between p-3">
                     <a href="#" class="flex justify-center">
@@ -32,14 +32,40 @@
                         <img src="/assets/svgs/basket-shopping.svg" alt="">
                         Rincian Belanja
                     </NuxtLink>
-                    <NuxtLink :to="{ name: 'year-id-realization' }" class="nav-link">
+                    <!-- <NuxtLink :to="{ name: 'year-id-realization' }" class="nav-link">
                         <img src="/assets/svgs/layer-group.svg" alt="">
                         Realisasi
-                    </NuxtLink>
-                    <NuxtLink :to="{ name: 'year-id-reports' }" class="nav-link">
+                    </NuxtLink> -->
+                    <!-- <NuxtLink :to="{ name: 'year-id-reports' }" class="nav-link">
                         <img src="/assets/svgs/file-export.svg" alt="">
                         Laporan
-                    </NuxtLink>
+                    </NuxtLink> -->
+                    <button type="button" v-on:click="openside()" class="flex items-center w-full nav-link">
+                        <img src="/assets/svgs/file-export.svg" alt="">
+
+                        <span class="flex-1 text-left">Laporan</span>
+                        <font-awesome-icon :icon="['fas', 'chevron-down']" v-if="!viewModal" title="Edit Data Program" :style="{ color: '#ABB3C4' }" />
+                        <font-awesome-icon :icon="['fas', 'chevron-down']" v-else title="Edit Data Program" rotation="180" :style="{ color: '#ABB3C4' }" />
+                    </button>
+                    <div id="dropdown-example" v-if="viewModal" class="py-2 space-y-2">
+                        <NuxtLink :to="{ name: 'year-id-reports-report1' }" class="flex items-center w-full p-2 text-sm text-gray-600 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Rencana Anggaran Program
+                        </NuxtLink>
+                        <NuxtLink :to="{ name: 'year-id-reports-report2' }" class="flex items-center w-full p-2 text-sm text-gray-600 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Realisasi Anggaran Program
+                        </NuxtLink>
+                        <NuxtLink :to="{ name: 'year-id-reports-report3' }" class="flex items-center w-full p-2 text-sm text-gray-600 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Perbandingan Rencana dan Realisasi Anggaran
+                        </NuxtLink>
+                        <NuxtLink :to="{ name: 'year-id-reports-report4' }" class="flex items-center w-full p-2 text-sm text-gray-600 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Realisasi Anggaran Persemester
+                        </NuxtLink>
+                        <NuxtLink :to="{ name: 'year-id-reports-report5' }" class="flex items-center w-full p-2 text-sm text-gray-600 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Realisasi Anggaran Pertahun
+                        </NuxtLink>
+                    </div>
+                    
+
                     <NuxtLink :to="{ name: 'year-id-charts' }" class="nav-link">
                         <img src="/assets/svgs/chart.svg" alt="">
                         Grafik
@@ -63,3 +89,17 @@
             </div>
         </div>
 </template>
+<script>
+export default {
+    data() {
+      return {
+          viewModal: false,
+      }
+    },
+    methods: {
+      openside: function(data){
+        this.viewModal = !this.viewModal;
+      },
+    }
+}
+</script>

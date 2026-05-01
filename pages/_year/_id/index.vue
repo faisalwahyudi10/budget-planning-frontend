@@ -29,42 +29,12 @@
           
         </div>
 
-        <div class="flex items-center gap-4">
-          <div class="shrink md:w-[286px] w-full">
-            <select v-model="selectedProgram" class="form-select appearance-none
-              input-field
-              !outline-none
-              italic
-              ring-indigo-200
-              focus:ring-2
-              transition-all
-              duration-300
-              w-full
-              px-3
-              pl-8
-              py-1.5
-              text-base
-              font-normal
-              text-gray-700
-              bg-white bg-clip-padding bg-no-repeat
-              border border-solid border-gray-300
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                <option selected disabled value="Pilih Tahun Program">Pilih Program</option>
-                <option :value="program.id" v-for="program in select">
-                  {{ program.name }}
-                </option>
-            </select>
-            
-          </div>
-          <div>
-            <button @click="openProgram()" type="button" class="inline-block leading-normal text-white uppercase transition duration-150 ease-in-out rounded-full shadow-md bg-sky-600 hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg w-9 h-9">
-              <font-awesome-icon :icon="['fas', 'search']" beat-fade title="Edit Data Program" />
-            </button>
-          </div>
-          
+        
+        <div>
+          <NuxtLink :to="{ name: 'year' }" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pilih Program</NuxtLink>
         </div>
+          
+        
         
       </section>
 
@@ -166,7 +136,7 @@ import PieChart from "/components/PieChart";
 export default {
     
     layout: 'dashboardPegawai',
-    middleware: 'auth',
+    middleware: ['auth', 'onlyEmployee'],
     components: {
       BarChart,
       PieChart

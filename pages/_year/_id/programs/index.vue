@@ -81,6 +81,12 @@
                           <th scope="col" class="px-6 py-3">
                               Pegawai
                           </th>
+                          <th scope="col" class="px-6 py-3">
+                              Unit
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Status
+                          </th>
                           <!-- <th scope="col" class="px-6 py-3">
                               Aksi
                           </th> -->
@@ -100,6 +106,12 @@
                             <span v-else>{{ getSisa(program) | currency('Rp. ') }}</span>
                           </td>
                           <td class="px-6 py-4">{{ program.user.employee.name }}</td>
+                          <td class="px-6 py-4">{{ program.unit || '-' }}</td>
+                          <td class="px-6 py-4">
+                            <span :class="{'text-green-600 font-bold': program.status === 'Diterima', 'text-red-600 font-bold': program.status === 'Ditolak', 'text-yellow-600 font-bold': program.status === 'Pending'}">
+                                {{ program.status || 'Pending' }}
+                            </span>
+                          </td>
                           <!-- <td class="px-6 py-4">
                             <a href="#" v-on:click="openUpdate({id:program.id, name:program.name, date_program:program.date_program, budget:program.budget, realized:program.realized, user_id:program.user_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" bounce title="Edit Data Program" /></a>
                           </td> -->

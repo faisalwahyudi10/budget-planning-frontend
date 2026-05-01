@@ -82,6 +82,12 @@
                               Pegawai
                           </th>
                           <th scope="col" class="px-6 py-3">
+                              Unit
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Status
+                          </th>
+                          <th scope="col" class="px-6 py-3">
                               Aksi
                           </th>
                       </tr>
@@ -100,8 +106,14 @@
                             <span v-else>{{ getSisa(program) | currency('Rp. ') }}</span>
                           </td>
                           <td class="px-6 py-4">{{ program.user.employee.name }}</td>
+                          <td class="px-6 py-4">{{ program.unit || '-' }}</td>
                           <td class="px-6 py-4">
-                            <a href="#" v-on:click="openUpdate({id:program.id, name:program.name, date_program:program.date_program, budget:program.budget, realized:program.realized, user_id:program.user_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" bounce title="Edit Data Program" /></a>
+                            <span :class="{'text-green-600 font-bold': program.status === 'Diterima', 'text-red-600 font-bold': program.status === 'Ditolak', 'text-yellow-600 font-bold': program.status === 'Pending'}">
+                                {{ program.status || 'Pending' }}
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <a href="#" v-on:click="openUpdate({id:program.id, name:program.name, date_program:program.date_program, budget:program.budget, realized:program.realized, user_id:program.user_id, unit:program.unit, status:program.status})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" bounce title="Edit Data Program" /></a>
                           </td>
                           <div v-if="viewModal" id="myModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto shadow-lg shadow-blue-500/50 ... outline-none focus:outline-none">
                             <div class="relative w-auto max-w-6xl mx-auto my-6">
@@ -151,6 +163,22 @@
                                         </select>
                                       </td>
                                     </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Unit</th>
+                                      <td class="p-3">
+                                        <input type="text" v-model="loadData.unit" class=" w-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Unit Pegawai" required>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="p-3 text-left">Status Pengajuan</th>
+                                      <td class="p-3">
+                                        <select v-model="loadData.status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                          <option value="Pending">Pending</option>
+                                          <option value="Diterima">Diterima</option>
+                                          <option value="Ditolak">Ditolak</option>
+                                        </select>
+                                      </td>
+                                    </tr>
                                   </table>
                                 </div>
                                 <!--footer-->
@@ -189,6 +217,8 @@ export default {
             budget: null,
             realized: null,
             user_id: null,
+            unit: null,
+            status: null,
           },
           viewModal: false,
       }

@@ -28,6 +28,18 @@
                     <option v-for="user in users.data" :value="user.id">{{ user.employee.name }}</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="" class="text-grey">Unit</label>
+                <input type="text" class="input-field" v-model="programs.unit" placeholder="Masukkan Unit Pegawai" />
+            </div>
+            <div class="form-group">
+                <label for="" class="text-grey">Status Pengajuan</label>
+                <select v-model="programs.status" class="appearance-none input-field form-icon-chevron_down">
+                    <option value="Pending">Pending</option>
+                    <option value="Diterima">Diterima</option>
+                    <option value="Ditolak">Ditolak</option>
+                </select>
+            </div>
             <button type="button" @click="createProgram()" id="continueBtn" class="btn btn-primary">
                 Simpan
             </button>
@@ -48,6 +60,8 @@ export default {
             budget: '',
             realized: 0,
             user_id: '',
+            unit: '',
+            status: 'Pending',
         },
       }
     }, 

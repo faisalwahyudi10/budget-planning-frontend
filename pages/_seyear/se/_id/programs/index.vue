@@ -81,6 +81,12 @@
                           <th scope="col" class="px-6 py-3">
                               Pegawai
                           </th>
+                          <th scope="col" class="px-6 py-3">
+                              Unit
+                          </th>
+                          <th scope="col" class="px-6 py-3">
+                              Status
+                          </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -92,6 +98,12 @@
                           <td class="px-6 py-4" v-if="program.realized == '' || program.realized == null || program.realized == 0">Belum Diinput</td><td class="px-6 py-4" v-else>{{ program.realized | currency('Rp. ') }}</td>
                           <td class="px-6 py-4">{{ program.budget - program.realized | currency('Rp. ') }}</td>
                           <td class="px-6 py-4">{{ program.user.employee.name }}</td>
+                          <td class="px-6 py-4">{{ program.unit || '-' }}</td>
+                          <td class="px-6 py-4">
+                            <span :class="{'text-green-600 font-bold': program.status === 'Diterima', 'text-red-600 font-bold': program.status === 'Ditolak', 'text-yellow-600 font-bold': program.status === 'Pending'}">
+                                {{ program.status || 'Pending' }}
+                            </span>
+                          </td>
                           
                       </tr>
                   </tbody>

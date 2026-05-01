@@ -47,7 +47,7 @@
             <div class="text-xl font-medium text-dark dark:text-gray-100">Rincian Belanja</div>
             <p class="text-grey">Data Detail Rincian Belanja</p>
           </div>
-          <a href="#" v-on:click.prevent="openCreate(searchQuery)" class="btn btn-primary"
+          <a v-if="programData.user_id == $auth.user.id && programData.status == 'Diterima'" href="#" v-on:click.prevent="openCreate(searchQuery)" class="btn btn-primary"
             >Tambah Rincian Belanja</a
           >
         </div>
@@ -199,8 +199,8 @@
                                                 
                                                 <td class="px-4 py-4">
                                                     <!-- <a href="#" v-on:click="openRealization({id:expense.id, amount_real:expense.amount, realized:expense.cost})" class="px-3"><font-awesome-icon :icon="['fas', 'check']" shake title="Realisasi Rincian Belanja" /></a> -->
-                                                    <a href="#" v-if="expense.realized == null || expense.amount_real == null" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, expense_type:expense.expense_type, item_type:expense.item_type, detailType_id:expense.detailType_id, unit_type:expense.unit_type, cost:expense.cost, month:expense.month, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
-                                                    <a href="#" v-if="expense.realized == null || expense.amount_real == null" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
+                                                    <a href="#" v-if="(expense.realized == null || expense.amount_real == null) && programData.user_id == $auth.user.id && programData.status == 'Diterima'" v-on:click="openUpdate({id:expense.id, name:expense.name, amount:expense.amount, expense_type:expense.expense_type, item_type:expense.item_type, detailType_id:expense.detailType_id, unit_type:expense.unit_type, cost:expense.cost, month:expense.month, tw:expense.tw, activity_id:expense.activity_id})" class="px-3"><font-awesome-icon :icon="['fas', 'pen-to-square']" shake title="Edit Data Rincian Belanja" /></a>
+                                                    <a href="#" v-if="(expense.realized == null || expense.amount_real == null) && programData.user_id == $auth.user.id && programData.status == 'Diterima'" v-on:click="deleteData({id:expense.id})" class="px-3"><font-awesome-icon :icon="['fas', 'trash-can']" shake title="Delete Data Rincian Belanja" /></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -555,6 +555,7 @@ export default {
           },
           getModal: false,
           openTab: 1,
+          programData: {},
       }
     },
     fetch() {
@@ -564,10 +565,20 @@ export default {
       this.getTotalTw()
       this.getTotalRealTw()
       this.getDetailType()
+      this.getProgramData()
     },
     methods: {
       toggleTabs: function(tabNumber){
         this.openTab = tabNumber
+      },
+      getProgramData() {
+        this.$axios.get('/program', {
+                params: {
+                    id: this.$route.params.id,
+                }
+        }) .then(({ data }) => {
+                        this.programData = data.result
+                    })
       },
       openUpdate: function(data){
         this.viewModal = !this.viewModal;

@@ -35,7 +35,7 @@
             <div class="text-xl font-medium text-dark dark:text-gray-100">Data Kegiatan Program</div>
             <p class="text-grey">Total {{ total }} Data</p>
           </div>
-          <NuxtLink :to="{ name: 'year-id-activities-create' }" class="btn btn-primary"
+          <NuxtLink v-if="programs.user_id == $auth.user.id && programs.status == 'Diterima'" :to="{ name: 'year-id-activities-create' }" class="btn btn-primary"
             >Tambah Kegiatan</NuxtLink
           >
         </div>
@@ -152,10 +152,10 @@
                     <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" v-on:click="detailActivity()">
                       Close
                     </button>
-                    <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" v-on:click.prevent="deleteData()">
+                    <button v-if="programs.user_id == $auth.user.id && programs.status == 'Diterima'" class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" v-on:click.prevent="deleteData()">
                       Delete Data
                     </button>
-                    <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" @click="openUpdate()">
+                    <button v-if="programs.user_id == $auth.user.id && programs.status == 'Diterima'" class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-blue-500 uppercase transition-all duration-150 ease-linear bg-transparent border border-blue-500 border-solid rounded outline-none hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none" type="button" @click="openUpdate()">
                       Update Data
                     </button>
                   </div>
